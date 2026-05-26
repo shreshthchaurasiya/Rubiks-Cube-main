@@ -2924,99 +2924,233 @@
 
         /* ── MOBILE RESPONSIVE PRESETS & FIXES ── */
         @media (max-width: 768px) {
-            html, body {
+
+            html,
+            body {
                 overflow-x: hidden !important;
                 width: 100%;
             }
 
             #hero {
-                padding: 60px 16px 20px !important;
-                gap: 20px !important;
-                min-height: auto !important;
+                padding: 96px 16px 40px !important;
+                gap: 0 !important;
+                min-height: 100svh !important;
                 height: auto !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: flex-start !important;
+                text-align: center !important;
             }
 
             .hero-content {
-                padding: 0 10px !important;
+                padding: 0 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                order: 1 !important;
+            }
+
+            /* Badge - yellow "Ready to work" pill */
+            .badge {
+                display: inline-flex !important;
+                align-self: center !important;
+                margin-bottom: 14px !important;
+                padding: 5px 14px !important;
+                font-size: 0.72rem !important;
+                background: rgba(255, 213, 0, 0.10) !important;
+                border: 1px solid rgba(255, 213, 0, 0.30) !important;
+                color: var(--yellow) !important;
+                border-radius: 100px !important;
+                letter-spacing: 1.2px !important;
+                visibility: visible !important;
+                opacity: 1 !important;
             }
 
             .hero-name {
-                font-size: 2.3rem !important;
+                font-size: clamp(1.8rem, 7vw, 2.4rem) !important;
                 letter-spacing: -1px !important;
-                margin-bottom: 8px !important;
+                margin-bottom: 10px !important;
                 line-height: 1.15 !important;
+                text-align: center !important;
             }
 
             .hero-role {
-                font-size: 1.05rem !important;
-                margin-bottom: 12px !important;
+                font-size: 1rem !important;
+                margin-bottom: 14px !important;
                 height: auto !important;
-                min-height: 2.2rem !important;
+                min-height: 2rem !important;
+                text-align: center !important;
+                width: 100% !important;
             }
 
             .hero-desc {
                 font-size: 0.92rem !important;
                 line-height: 1.6 !important;
-                margin-bottom: 24px !important;
-            }
-
-            .cube-wrapper {
-                transform: scale(0.65) !important;
-                height: 180px !important;
-                margin: 0 auto !important;
-            }
-
-            section {
-                padding: 40px 16px !important;
-            }
-
-            footer {
-                padding-bottom: 90px !important; /* Ensure chatbot button doesn't cover footer links/text */
-            }
-        }
-
-        @media (max-width: 480px) {
-            #hero {
-                padding: 45px 12px 15px !important;
-                gap: 15px !important;
-            }
-
-            .hero-name {
-                font-size: 1.95rem !important;
-            }
-
-            .hero-role {
-                font-size: 0.95rem !important;
-                min-height: 2rem !important;
+                margin-bottom: 22px !important;
+                text-align: center !important;
+                max-width: 100% !important;
             }
 
             .hero-btns {
                 flex-direction: column !important;
                 gap: 10px !important;
                 width: 100% !important;
-                padding: 0 10px !important;
+                max-width: 280px !important;
+                margin: 0 auto 28px !important;
                 box-sizing: border-box !important;
             }
 
-            .hero-btns .btn-p, 
+            .hero-btns .btn-p,
             .hero-btns .btn-s {
                 width: 100% !important;
                 justify-content: center !important;
                 box-sizing: border-box !important;
-                padding: 12px 20px !important;
-                font-size: 0.92rem !important;
+                padding: 13px 20px !important;
+                font-size: 0.95rem !important;
+                text-align: center !important;
+                border-radius: 8px !important;
+                display: flex !important;
             }
 
+            /* Fix Get In Touch button – always visible */
+            .hero-btns .btn-s {
+                color: #ffffff !important;
+                border: 1.5px solid rgba(255, 255, 255, 0.40) !important;
+                background: rgba(255, 255, 255, 0.08) !important;
+            }
+
+            .hero-btns .btn-s:hover {
+                color: var(--yellow) !important;
+                border-color: var(--yellow) !important;
+                background: rgba(255, 213, 0, 0.10) !important;
+            }
+
+            /* ── CUBE: responsive auto-size, overflow:visible so cube renders cleanly ── */
             .cube-wrapper {
-                transform: scale(0.55) !important;
-                height: 150px !important;
-                margin: -10px auto 0 !important;
+                order: 2 !important;
+                width: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                margin: 0 auto 0 !important;
+                transform: none !important;
+            }
+
+            /* The viewport is the perspective origin – cube overflows it visually */
+            .cube-viewport {
+                width: 160px !important;
+                height: 160px !important;
+                perspective: 800px !important;
+                margin: 0 auto !important;
+                overflow: visible !important;
+                transform: none !important;
+            }
+
+            .cube-ui {
+                margin-top: 20px !important;
+                transform: none !important;
+                width: 100% !important;
+                text-align: center !important;
+            }
+
+            .cube-status {
+                font-size: 0.78rem !important;
+                margin-bottom: 10px !important;
+            }
+
+            .cube-btns {
+                display: flex !important;
+                gap: 10px !important;
+                justify-content: center !important;
+                flex-wrap: wrap !important;
+            }
+
+            /* Scramble & Solve buttons – always visible, finger-tap friendly */
+            .cbtn {
+                padding: 10px 24px !important;
+                font-size: 0.85rem !important;
+                min-width: 100px !important;
+                border-radius: 8px !important;
+                display: inline-block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+
+            .cbtn:disabled {
+                opacity: 0.35 !important;
+            }
+
+            .cube-hint {
+                font-size: 0.72rem !important;
+                margin-top: 6px !important;
+            }
+
+            .cube-aura {
+                inset: -40px !important;
+            }
+
+            section {
+                padding: 45px 16px !important;
+            }
+
+            footer {
+                padding-bottom: 100px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #hero {
+                padding: 88px 12px 32px !important;
+            }
+
+            .hero-name {
+                font-size: clamp(1.6rem, 8.5vw, 2rem) !important;
+            }
+
+            .hero-role {
+                font-size: 0.95rem !important;
+            }
+
+            .hero-desc {
+                font-size: 0.88rem !important;
+                margin-bottom: 18px !important;
+            }
+
+            .hero-btns {
+                max-width: 260px !important;
+                gap: 8px !important;
+                margin-bottom: 20px !important;
+            }
+
+            .hero-btns .btn-p,
+            .hero-btns .btn-s {
+                padding: 12px 16px !important;
+                font-size: 0.9rem !important;
+            }
+
+            /* Smaller cube for tiny phones */
+            .cube-viewport {
+                width: 140px !important;
+                height: 140px !important;
+            }
+
+            .cube-ui {
+                margin-top: 70px !important;
+            }
+
+            .cbtn {
+                padding: 9px 18px !important;
+                font-size: 0.82rem !important;
+                min-width: 90px !important;
             }
 
             .badge {
-                margin-bottom: 14px !important;
-                padding: 5px 12px !important;
-                font-size: 0.7rem !important;
+                margin-bottom: 12px !important;
+                font-size: 0.68rem !important;
             }
         }
     </style>
@@ -4267,8 +4401,16 @@
         let dragging = false, lx2 = 0, ly2 = 0;
         let lastDx = 0, lastDy = 0;
 
+        function getMobileScale() {
+            if (window.innerWidth <= 480) return 0.55;
+            if (window.innerWidth <= 768) return 0.65;
+            return 1;
+        }
+
         function applyRot() {
-            cubeScene.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+            const sc = getMobileScale();
+            const scStr = sc < 1 ? ` scale(${sc})` : '';
+            cubeScene.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)${scStr}`;
         }
 
         (function animRot() {
