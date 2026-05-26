@@ -2922,20 +2922,20 @@
             }
         }
 
-        /* ── MOBILE RESPONSIVE PRESETS & FIXES ── */
+        /* ── MOBILE RESPONSIVE – HERO & CUBE ── */
         @media (max-width: 768px) {
 
-            html,
-            body {
+            html, body {
                 overflow-x: hidden !important;
                 width: 100%;
             }
 
+            /* ── Hero layout ── */
             #hero {
-                padding: 96px 16px 40px !important;
+                padding: 90px 16px 30px !important;
                 gap: 0 !important;
-                min-height: 100svh !important;
                 height: auto !important;
+                min-height: 0 !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
@@ -2945,20 +2945,20 @@
 
             .hero-content {
                 padding: 0 !important;
+                order: 1 !important;
                 display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
                 text-align: center !important;
                 width: 100% !important;
                 max-width: 100% !important;
-                order: 1 !important;
             }
 
-            /* Badge - yellow "Ready to work" pill */
+            /* Yellow "Ready to work" badge */
             .badge {
                 display: inline-flex !important;
                 align-self: center !important;
-                margin-bottom: 14px !important;
+                margin-bottom: 12px !important;
                 padding: 5px 14px !important;
                 font-size: 0.72rem !important;
                 background: rgba(255, 213, 0, 0.10) !important;
@@ -2975,23 +2975,19 @@
                 letter-spacing: -1px !important;
                 margin-bottom: 10px !important;
                 line-height: 1.15 !important;
-                text-align: center !important;
             }
 
             .hero-role {
                 font-size: 1rem !important;
-                margin-bottom: 14px !important;
+                margin-bottom: 12px !important;
                 height: auto !important;
                 min-height: 2rem !important;
-                text-align: center !important;
-                width: 100% !important;
             }
 
             .hero-desc {
                 font-size: 0.92rem !important;
                 line-height: 1.6 !important;
-                margin-bottom: 22px !important;
-                text-align: center !important;
+                margin-bottom: 20px !important;
                 max-width: 100% !important;
             }
 
@@ -3000,7 +2996,7 @@
                 gap: 10px !important;
                 width: 100% !important;
                 max-width: 280px !important;
-                margin: 0 auto 28px !important;
+                margin: 0 auto 16px !important;
                 box-sizing: border-box !important;
             }
 
@@ -3009,73 +3005,54 @@
                 width: 100% !important;
                 justify-content: center !important;
                 box-sizing: border-box !important;
-                padding: 13px 20px !important;
-                font-size: 0.95rem !important;
-                text-align: center !important;
-                border-radius: 8px !important;
+                padding: 12px 20px !important;
+                font-size: 0.93rem !important;
                 display: flex !important;
+                border-radius: 8px !important;
             }
 
-            /* Fix Get In Touch button – always visible */
+            /* "Get In Touch" button – always visible */
             .hero-btns .btn-s {
                 color: #ffffff !important;
                 border: 1.5px solid rgba(255, 255, 255, 0.40) !important;
                 background: rgba(255, 255, 255, 0.08) !important;
             }
 
-            .hero-btns .btn-s:hover {
-                color: var(--yellow) !important;
-                border-color: var(--yellow) !important;
-                background: rgba(255, 213, 0, 0.10) !important;
-            }
-
-            /* ── CUBE: responsive auto-size, overflow:visible so cube renders cleanly ── */
+            /* ── CUBE: scale the WHOLE wrapper (cube + buttons together) ──
+               cube-wrapper DOM height ≈ 380px.
+               scale(0.58) → visual ≈ 220px, dead space = 380−220 = 160px
+               margin-bottom: -160px removes that dead space.                 ── */
             .cube-wrapper {
                 order: 2 !important;
                 width: 100% !important;
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                margin: 0 auto 0 !important;
-                transform: none !important;
+                transform: scale(0.58) !important;
+                transform-origin: top center !important;
+                /* Explicit margin: shorthand from 1024px block must not override bottom */
+                margin-top: 0 !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                margin-bottom: -160px !important;
+                flex-shrink: 0 !important;
             }
 
-            /* The viewport is the perspective origin – cube overflows it visually */
+            /* Restore cube-viewport to natural size (JS scale handles 3D cube) */
             .cube-viewport {
-                width: 160px !important;
-                height: 160px !important;
-                perspective: 800px !important;
-                margin: 0 auto !important;
-                overflow: visible !important;
+                width: 240px !important;
+                height: 240px !important;
+                perspective: 960px !important;
                 transform: none !important;
             }
 
+            /* Restore cube-ui natural margin */
             .cube-ui {
-                margin-top: 20px !important;
+                margin-top: 80px !important;
                 transform: none !important;
-                width: 100% !important;
-                text-align: center !important;
             }
 
-            .cube-status {
-                font-size: 0.78rem !important;
-                margin-bottom: 10px !important;
-            }
-
-            .cube-btns {
-                display: flex !important;
-                gap: 10px !important;
-                justify-content: center !important;
-                flex-wrap: wrap !important;
-            }
-
-            /* Scramble & Solve buttons – always visible, finger-tap friendly */
+            /* Cube buttons readable */
             .cbtn {
-                padding: 10px 24px !important;
+                padding: 8px 20px !important;
                 font-size: 0.85rem !important;
-                min-width: 100px !important;
-                border-radius: 8px !important;
-                display: inline-block !important;
                 visibility: visible !important;
                 opacity: 1 !important;
             }
@@ -3084,13 +3061,9 @@
                 opacity: 0.35 !important;
             }
 
-            .cube-hint {
-                font-size: 0.72rem !important;
-                margin-top: 6px !important;
-            }
-
+            /* Tighten aura on mobile */
             .cube-aura {
-                inset: -40px !important;
+                inset: -50px !important;
             }
 
             section {
@@ -3102,9 +3075,11 @@
             }
         }
 
+        /* ── tiny phones (≤480px) ── */
         @media (max-width: 480px) {
+
             #hero {
-                padding: 88px 12px 32px !important;
+                padding: 85px 12px 24px !important;
             }
 
             .hero-name {
@@ -3117,40 +3092,31 @@
 
             .hero-desc {
                 font-size: 0.88rem !important;
-                margin-bottom: 18px !important;
+                margin-bottom: 16px !important;
             }
 
             .hero-btns {
-                max-width: 260px !important;
+                max-width: 256px !important;
                 gap: 8px !important;
-                margin-bottom: 20px !important;
+                margin-bottom: 12px !important;
             }
 
             .hero-btns .btn-p,
             .hero-btns .btn-s {
-                padding: 12px 16px !important;
-                font-size: 0.9rem !important;
-            }
-
-            /* Smaller cube for tiny phones */
-            .cube-viewport {
-                width: 140px !important;
-                height: 140px !important;
-            }
-
-            .cube-ui {
-                margin-top: 70px !important;
-            }
-
-            .cbtn {
-                padding: 9px 18px !important;
-                font-size: 0.82rem !important;
-                min-width: 90px !important;
+                padding: 11px 16px !important;
+                font-size: 0.88rem !important;
             }
 
             .badge {
-                margin-bottom: 12px !important;
                 font-size: 0.68rem !important;
+                margin-bottom: 10px !important;
+            }
+
+            /* Smaller scale for tiny phones
+               scale(0.50) → visual ≈ 190px, dead space = 380−190 = 190px */
+            .cube-wrapper {
+                transform: scale(0.50) !important;
+                margin-bottom: -190px !important;
             }
         }
     </style>
@@ -4401,16 +4367,8 @@
         let dragging = false, lx2 = 0, ly2 = 0;
         let lastDx = 0, lastDy = 0;
 
-        function getMobileScale() {
-            if (window.innerWidth <= 480) return 0.55;
-            if (window.innerWidth <= 768) return 0.65;
-            return 1;
-        }
-
         function applyRot() {
-            const sc = getMobileScale();
-            const scStr = sc < 1 ? ` scale(${sc})` : '';
-            cubeScene.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)${scStr}`;
+            cubeScene.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
         }
 
         (function animRot() {
