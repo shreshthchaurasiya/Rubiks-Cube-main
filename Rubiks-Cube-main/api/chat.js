@@ -158,12 +158,23 @@ Always include ALL 6 fields in your leadData output — copy the existing values
         .replace(/^```\s*/i, "")
         .replace(/\s*```$/i, "")
         .trim();
-      parsed = JSON.parse(cleanText);
+        
+      // Extract just the JSON object if there's extra text
+      const jsonMatch = cleanText.match(/\{[\s\S]*\}/);
+      const jsonString = jsonMatch ? jsonMatch[0] : cleanText;
+      
+      parsed = JSON.parse(jsonString);
+      
+      // Ensure required structure exists
+      if (!parsed || typeof parsed !== 'object') throw new Error("Parsed result is not an object");
+      if (!parsed.reply) parsed.reply = "Main samajh nahi paya, please dobara batayein.";
+      if (!parsed.leadData) parsed.leadData = leadData;
+      
     } catch (parseErr) {
-      console.error("Failed to parse Gemini JSON:", rawText);
+      console.error("Failed to parse Gemini JSON:", rawText, parseErr);
       // Fallback: return the raw text as a reply without structured data
       parsed = {
-        reply: rawText || "Kuch problem aayi, please dobara try karein.",
+        reply: rawText.replace(/[{}"\\]/g, '') || "Kuch problem aayi, please dobara try karein.",
         leadData: leadData,
         readyToSubmit: false,
       };
