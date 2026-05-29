@@ -2922,201 +2922,393 @@
             }
         }
 
-        /* ── MOBILE RESPONSIVE – HERO & CUBE ── */
-        @media (max-width: 768px) {
+        /* ── MOBILE RESPONSIVE – same approach as reference example ── */
 
-            html, body {
-                overflow-x: hidden !important;
-                width: 100%;
-            }
-
-            /* ── Hero layout ── */
-            #hero {
-                padding: 90px 16px 30px !important;
-                gap: 0 !important;
-                height: auto !important;
-                min-height: 0 !important;
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                justify-content: flex-start !important;
-                text-align: center !important;
-            }
-
-            .hero-content {
-                padding: 0 !important;
-                order: 1 !important;
-                display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                text-align: center !important;
-                width: 100% !important;
-                max-width: 100% !important;
-            }
-
-            /* Yellow "Ready to work" badge */
-            .badge {
-                display: inline-flex !important;
-                align-self: center !important;
-                margin-bottom: 12px !important;
-                padding: 5px 14px !important;
-                font-size: 0.72rem !important;
-                background: rgba(255, 213, 0, 0.10) !important;
-                border: 1px solid rgba(255, 213, 0, 0.30) !important;
-                color: var(--yellow) !important;
-                border-radius: 100px !important;
-                letter-spacing: 1.2px !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-            }
-
-            .hero-name {
-                font-size: clamp(1.8rem, 7vw, 2.4rem) !important;
-                letter-spacing: -1px !important;
-                margin-bottom: 10px !important;
-                line-height: 1.15 !important;
-            }
-
-            .hero-role {
-                font-size: 1rem !important;
-                margin-bottom: 12px !important;
-                height: auto !important;
-                min-height: 2rem !important;
-            }
-
-            .hero-desc {
-                font-size: 0.92rem !important;
-                line-height: 1.6 !important;
-                margin-bottom: 20px !important;
-                max-width: 100% !important;
-            }
-
-            .hero-btns {
-                flex-direction: column !important;
-                gap: 10px !important;
-                width: 100% !important;
-                max-width: 280px !important;
-                margin: 0 auto 16px !important;
-                box-sizing: border-box !important;
-            }
-
-            .hero-btns .btn-p,
-            .hero-btns .btn-s {
-                width: 100% !important;
-                justify-content: center !important;
-                box-sizing: border-box !important;
-                padding: 12px 20px !important;
-                font-size: 0.93rem !important;
-                display: flex !important;
-                border-radius: 8px !important;
-            }
-
-            /* "Get In Touch" button – always visible */
-            .hero-btns .btn-s {
-                color: #ffffff !important;
-                border: 1.5px solid rgba(255, 255, 255, 0.40) !important;
-                background: rgba(255, 255, 255, 0.08) !important;
-            }
-
-            /* ── CUBE: scale the WHOLE wrapper (cube + buttons together) ──
-               cube-wrapper DOM height ≈ 380px.
-               scale(0.58) → visual ≈ 220px, dead space = 380−220 = 160px
-               margin-bottom: -160px removes that dead space.                 ── */
-            .cube-wrapper {
-                order: 2 !important;
-                width: 100% !important;
-                transform: scale(0.58) !important;
-                transform-origin: top center !important;
-                /* Explicit margin: shorthand from 1024px block must not override bottom */
-                margin-top: 0 !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
-                margin-bottom: -160px !important;
-                flex-shrink: 0 !important;
-            }
-
-            /* Restore cube-viewport to natural size (JS scale handles 3D cube) */
-            .cube-viewport {
-                width: 240px !important;
-                height: 240px !important;
-                perspective: 960px !important;
-                transform: none !important;
-            }
-
-            /* Restore cube-ui natural margin */
-            .cube-ui {
-                margin-top: 80px !important;
-                transform: none !important;
-            }
-
-            /* Cube buttons readable */
-            .cbtn {
-                padding: 8px 20px !important;
-                font-size: 0.85rem !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-            }
-
-            .cbtn:disabled {
-                opacity: 0.35 !important;
-            }
-
-            /* Tighten aura on mobile */
-            .cube-aura {
-                inset: -50px !important;
-            }
-
-            section {
-                padding: 45px 16px !important;
-            }
-
-            footer {
-                padding-bottom: 100px !important;
-            }
+        /* Phones & small tablets: hero layout + cube scale */
+        .cube-viewport {
+            width: 240px;
+            height: 240px;
+            perspective: 960px;
+            perspective-origin: 50% 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* ── tiny phones (≤480px) ── */
-        @media (max-width: 480px) {
+        #cubeScene {
+            width: 0;
+            height: 0;
+            transform-style: preserve-3d;
+            transform: rotateX(-22deg) rotateY(45deg);
+            cursor: grab;
+            will-change: transform;
+        }
 
-            #hero {
-                padding: 85px 12px 24px !important;
+        #cubeScene:active {
+            cursor: grabbing;
+        }
+
+        /* Each small cubie */
+        .cubie {
+            position: absolute;
+            width: 66px;
+            height: 66px;
+            margin: -33px 0 0 -33px;
+            transform-style: preserve-3d;
+        }
+
+        .cubie-face {
+            position: absolute;
+            width: 66px;
+            height: 66px;
+            border-radius: 9px;
+            border: 3px solid #050505;
+            backface-visibility: visible;
+        }
+
+        .gloss {
+            position: absolute;
+            inset: 0;
+            border-radius: 6px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, .27) 0%, transparent 52%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .shine {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 38%;
+            border-radius: 0 0 6px 6px;
+            background: rgba(0, 0, 0, .22);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .fc-red {
+            background: var(--red);
+            box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .35), 0 0 12px var(--red);
+        }
+
+        .fc-orange {
+            background: var(--orange);
+            box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .35), 0 0 12px var(--orange);
+        }
+
+        .fc-blue {
+            background: rgba(0, 81, 162, 1);
+            box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .35), 0 0 12px rgba(0, 81, 162, .55);
+        }
+
+        .fc-green {
+            background: rgba(0, 155, 72, 1);
+            box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .35), 0 0 12px rgba(0, 155, 72, .55);
+        }
+
+        .fc-yellow,
+        .cubie-face.fc-yellow {
+            background: rgba(255, 213, 0, 1) !important;
+            box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .35), 0 0 12px rgba(255, 213, 0, .55);
+        }
+
+        .fc-white,
+        .cubie-face.fc-white {
+            background: rgba(255, 255, 255, 1) !important;
+            box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .15), 0 0 8px rgba(255, 255, 255, .3);
+        }
+
+        .fc-inner {
+            background: transparent !important;
+            box-shadow: none !important;
+            border-color: transparent !important;
+            opacity: 0;
+        }
+
+        /* Cube UI */
+        .cube-ui {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .cube-status {
+            font: 700 .82rem 'JetBrains Mono', monospace;
+            color: var(--yellow);
+            letter-spacing: .8px;
+            margin-bottom: 12px;
+            min-height: 1.2em;
+            text-shadow: 0 0 12px rgba(255, 213, 0, .4);
+        }
+
+        .cube-btns {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 9px;
+        }
+
+        .cbtn {
+            padding: 7px 18px;
+            border: 1px solid rgba(255, 255, 255, .15);
+            background: rgba(255, 255, 255, .04);
+            color: var(--dim);
+            border-radius: 8px;
+            font: 600 .82rem 'Space Grotesk', sans-serif;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .cbtn:hover:not(:disabled) {
+            border-color: var(--orange);
+            color: var(--orange);
+        }
+
+        .cbtn.cbtn-solve {
+            border-color: rgba(255, 213, 0, .3);
+            color: rgba(255, 213, 0, .7);
+        }
+
+        .cbtn.cbtn-solve:hover:not(:disabled) {
+            border-color: var(--yellow);
+            color: var(--yellow);
+            background: rgba(255, 213, 0, .07);
+        }
+
+        .cbtn:disabled {
+            opacity: .35;
+            cursor: not-allowed;
+        }
+
+        .cube-hint {
+            font-size: .75rem;
+            color: var(--dim);
+            letter-spacing: .3px;
+        }
+
+        /* ── MOBILE RESPONSIVENESS FOR ALL SECTIONS (EXCEPT HERO) ── */
+        @media (max-width: 768px) {
+
+            /* General Sections */
+            section:not(#hero) {
+                padding: 60px 20px !important;
             }
 
-            .hero-name {
-                font-size: clamp(1.6rem, 8.5vw, 2rem) !important;
+            .sec-title {
+                font-size: 2.2rem !important;
             }
 
-            .hero-role {
+            .sec-sub {
                 font-size: 0.95rem !important;
             }
 
-            .hero-desc {
-                font-size: 0.88rem !important;
-                margin-bottom: 16px !important;
+            /* About Section */
+            .about-container {
+                gap: 30px !important;
             }
 
-            .hero-btns {
-                max-width: 256px !important;
-                gap: 8px !important;
-                margin-bottom: 12px !important;
+            .about-photo {
+                width: 140px !important;
+                height: 140px !important;
             }
 
-            .hero-btns .btn-p,
-            .hero-btns .btn-s {
-                padding: 11px 16px !important;
-                font-size: 0.88rem !important;
+            .about-stats-strip {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
             }
 
-            .badge {
-                font-size: 0.68rem !important;
-                margin-bottom: 10px !important;
+            /* Projects Section */
+            .project-card {
+                flex-direction: column !important;
+                height: auto !important;
             }
 
-            /* Smaller scale for tiny phones
-               scale(0.50) → visual ≈ 190px, dead space = 380−190 = 190px */
+            .project-image {
+                width: 100% !important;
+                height: 200px !important;
+            }
+
+            .project-content {
+                width: 100% !important;
+                padding: 24px !important;
+            }
+
+            /* Contact Section */
+            .contact-wrapper {
+                flex-direction: column !important;
+                gap: 30px !important;
+            }
+
+            .contact-info,
+            .contact-form-container {
+                width: 100% !important;
+            }
+
+            .f-row {
+                flex-direction: column !important;
+                gap: 16px !important;
+            }
+
+            /* Chatbot */
+            .chatbot-panel {
+                width: calc(100vw - 32px) !important;
+                right: 16px !important;
+                bottom: 84px !important;
+                height: 500px !important;
+            }
+
+            .chatbot-launcher {
+                width: 52px !important;
+                height: 52px !important;
+                bottom: 16px !important;
+                right: 16px !important;
+            }
+
+            .chatbot-launcher svg {
+                width: 24px !important;
+                height: 24px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            /* General Sections */
+            section:not(#hero) {
+                padding: 45px 16px !important;
+            }
+
+            .sec-title {
+                font-size: 1.8rem !important;
+            }
+
+            /* About Section */
+            .about-stats-strip {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Skills */
+            .skills-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Projects */
+            .project-card {
+                padding: 0 !important;
+            }
+
+            .project-image {
+                height: 180px !important;
+            }
+
+            .project-links {
+                flex-direction: column !important;
+                width: 100% !important;
+            }
+
+            .project-links a {
+                width: 100% !important;
+                text-align: center !important;
+                justify-content: center !important;
+            }
+
+            /* Process */
+            .process-grid {
+                gap: 30px !important;
+            }
+
+            .process-card {
+                padding: 24px 20px !important;
+            }
+
+            /* Testimonials */
+            .testi-card {
+                padding: 24px 16px !important;
+            }
+
+            /* Contact */
+            .contact-box {
+                padding: 24px 16px !important;
+            }
+
+            /* Chatbot Fullscreen on very small phones */
+            .chatbot-panel {
+                width: 100vw !important;
+                height: 100vh !important;
+                height: 100dvh !important;
+                bottom: 0 !important;
+                right: 0 !important;
+                border-radius: 0 !important;
+                max-height: 100vh !important;
+            }
+        }
+
+        /* ── SAFE MOBILE LAYOUT OVERRIDES (Global Fixes) ── */
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @media (max-width: 1024px) {
+
+            /* Fix 100vw causing horizontal scroll and left-cut */
+            #hero {
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+                margin: 0 !important;
+            }
+
+            .hero-content {
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
             .cube-wrapper {
-                transform: scale(0.50) !important;
-                margin-bottom: -190px !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
+            section,
+            main,
+            header,
+            nav {
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+        }
+
+        /* ── SAFE MOBILE FIXES FOR CONTACT SECTION ── */
+        @media (max-width: 600px) {
+            .contact-card {
+                padding: 24px 16px !important;
+                gap: 16px !important;
+                flex-direction: column !important;
+                text-align: center !important;
+                justify-content: center !important;
+            }
+
+            .contact-card-info {
+                align-items: center !important;
+            }
+
+            .contact-card-value {
+                font-size: 1rem !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                word-break: break-word !important;
+                max-width: 100% !important;
+            }
+
+            .contact-title {
+                font-size: 2.5rem !important;
+            }
+
+            #contact {
+                padding: 50px 20px !important;
             }
         }
     </style>
