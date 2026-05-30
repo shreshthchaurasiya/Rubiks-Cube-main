@@ -112,8 +112,17 @@
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            transition: width .2s, height .2s, border-color .2s;
+            transition: width .3s cubic-bezier(0.25, 1, 0.5, 1), 
+                        height .3s cubic-bezier(0.25, 1, 0.5, 1), 
+                        border-color .3s, 
+                        background-color .3s, 
+                        backdrop-filter .3s;
             mix-blend-mode: difference;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
         }
 
         #cur-dot {
@@ -3311,6 +3320,56 @@
                 padding: 50px 20px !important;
             }
         }
+
+        /* ── ABOUT BG ICONS ── */
+        .about-bg-icons {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .bg-icon {
+            position: absolute;
+            opacity: 0.12;
+            filter: drop-shadow(0 0 15px currentColor);
+            animation: floatSlow 8s ease-in-out infinite alternate;
+        }
+        .react-icon {
+            top: 8%;
+            left: 2%;
+            width: 180px;
+            height: 180px;
+            color: #61dafb;
+        }
+        .node-icon {
+            bottom: 5%;
+            right: 5%;
+            width: 140px;
+            height: 140px;
+            color: #68A063;
+            animation-duration: 10s;
+            animation-delay: -3s;
+        }
+        .python-icon {
+            top: 45%;
+            left: 80%;
+            width: 120px;
+            height: 120px;
+            color: #FFD43B;
+            animation-duration: 12s;
+            animation-delay: -6s;
+        }
+        @media (max-width: 1024px) {
+            .bg-icon { opacity: 0.08; }
+            .react-icon { top: 2%; left: -10%; width: 120px; height: 120px; }
+            .node-icon { bottom: 2%; right: -10%; width: 100px; height: 100px; }
+            .python-icon { top: 35%; left: auto; right: -15%; width: 90px; height: 90px; }
+        }
+        @keyframes floatSlow {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-20px) rotate(10deg); }
+        }
     </style>
 </head>
 
@@ -3336,6 +3395,7 @@
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -3391,6 +3451,25 @@
 
     <!-- ════════ ABOUT ════════ -->
     <section id="about">
+        <!-- Floating Background Icons -->
+        <div class="about-bg-icons">
+            <svg class="bg-icon react-icon" viewBox="0 0 24 24" fill="none" stroke="#61dafb" stroke-width="1.2">
+                <circle cx="12" cy="12" r="2.5" />
+                <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0 12 12)" />
+                <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
+                <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
+            </svg>
+            <svg class="bg-icon node-icon" viewBox="0 0 24 24" fill="none" stroke="#68A063" stroke-width="1.2">
+                <path d="M12 2L2 7.5v9L12 22l10-5.5v-9L12 2z" />
+                <path d="M12 22V12" />
+                <path d="M22 7.5L12 12L2 7.5" />
+            </svg>
+            <svg class="bg-icon python-icon" viewBox="0 0 24 24" fill="none" stroke="#FFD43B" stroke-width="1.2">
+                <path d="M12 2C8.686 2 6 4.686 6 8v3h6v1H6v3c0 3.314 2.686 6 6 6s6-2.686 6-6v-3h-6v-1h6V8c0-3.314-2.686-6-6-6z" />
+                <path d="M9 5v.01M15 19v.01" stroke-width="2" stroke-linecap="round" />
+            </svg>
+        </div>
+
         <div class="sec-head up">
             <div class="sec-tag">01 &mdash; About</div>
             <h2 class="sec-title">The <span>Developer</span> Behind The Work</h2>
@@ -3404,16 +3483,16 @@
                 </div>
 
                 <div class="about-headline">
-                    I build <em>digital products</em> that<br>people actually love to use.
+                    I build <em>websites & software</em> that<br>people actually love to use.
                 </div>
 
                 <div class="about-text">
-                    <p>Passionate developer focused on building modern digital products powered by AI, automation, and
+                    <p>Passionate developer focused on building modern digital products, and
                         scalable design systems.</p>
-                    <p>Skilled in website development, AI-integrated applications, ERP software, MLM web platforms,
-                        UI/UX ,
-                        and performance-driven digital solutions.</p>
-                    <p class="about-accent">"Turning innovative ideas into polished, high-impact user experiences."</p>
+                    <p>Skilled in full-stack development, AI-integrated applications, ERP/CRM development, UI/UX design,
+                        and performance web solutions..</p>
+                    <p class="about-accent">"Turning ideas into polished, practical, and high-impact digital
+                        experiences.""</p>
                 </div>
 
                 <!-- Feature Chips -->
@@ -3431,10 +3510,6 @@
                         UI/UX Design
                     </div>
                     <div class="about-chip">
-                        <div class="about-chip-dot" style="background:var(--orange)"></div>
-                        Meta Ads
-                    </div>
-                    <div class="about-chip">
                         <div class="about-chip-dot" style="background:var(--red)"></div>
                         CRM Systems
                     </div>
@@ -3444,7 +3519,7 @@
                     </div>
                     <div class="about-chip">
                         <div class="about-chip-dot" style="background:#a259ff"></div>
-                        Graphic Design
+                        Application Dev
                     </div>
                 </div>
 
@@ -3455,16 +3530,12 @@
                         <div class="stat-l">Core Techs</div>
                     </div>
                     <div class="stat up">
-                        <div class="stat-n" data-target="15">0</div>
+                        <div class="stat-n" data-target="10">0</div>
                         <div class="stat-l">Projects</div>
                     </div>
                     <div class="stat up">
-                        <div class="stat-n" data-target="3">0</div>
+                        <div class="stat-n" data-target="2">0</div>
                         <div class="stat-l">Years Exp.</div>
-                    </div>
-                    <div class="stat up">
-                        <div class="stat-n" data-target="23.5" data-decimals="1">0</div>
-                        <div class="stat-l">Best Time</div>
                     </div>
                 </div>
             </div>
@@ -3472,12 +3543,13 @@
             <!-- RIGHT: Profile Card -->
             <div class="about-profile-card up">
                 <div class="about-photo">
-                    <img src="preview.png" alt="Shreshth Chaurasiya" loading="lazy">
+                    <img src=" https://i.ibb.co/QF32bQ6c/Whats-App-Image-2026-05-30-at-12-10-29-PM.jpg"
+                        alt="Shreshth Chaurasiya" loading="lazy">
                 </div>
 
                 <div class="about-name-block">
                     <div class="about-name">Shreshth Chaurasiya</div>
-                    <div class="about-role">Full Stack Developer &amp; AI Specialist</div>
+                    <div class="about-role">Full Stack Developer </div>
                     <div class="about-available">Available for Work</div>
                 </div>
 
@@ -3485,23 +3557,19 @@
 
                 <div class="about-card-tags">
                     <span class="about-card-tag"
-                        style="color:var(--yellow);border-color:rgba(255,213,0,.25);background:rgba(255,213,0,.05)">AI
-                        Development</span>
+                        style="color:var(--blue);border-color:rgba(0,81,162,.35);background:rgba(0,81,162,.07)">React &
+                        Next.js</span>
                     <span class="about-card-tag"
-                        style="color:var(--blue);border-color:rgba(0,81,162,.35);background:rgba(0,81,162,.07)">React
-                        &amp; Next.js</span>
+                        style="color:var(--green);border-color:rgba(0,155,72,.35);background:rgba(0,155,72,.07)">Automation</span>
                     <span class="about-card-tag"
-                        style="color:var(--green);border-color:rgba(0,155,72,.35);background:rgba(0,155,72,.07)">Node.js</span>
+                        style="color:#00bcd4;border-color:rgba(0,188,212,.35);background:rgba(0,188,212,.07)"> Node.js
+                    </span>
                     <span class="about-card-tag"
-                        style="color:var(--orange);border-color:rgba(255,88,0,.35);background:rgba(255,88,0,.07)">n8n
-                        Automation</span>
-                    <span class="about-card-tag"
-                        style="color:#00bcd4;border-color:rgba(0,188,212,.35);background:rgba(0,188,212,.07)">ERP &amp;
-                        MLM Systems</span>
-                    <span class="about-card-tag"
-                        style="color:#a259ff;border-color:rgba(162,89,255,.35);background:rgba(162,89,255,.07)">Figma</span>
+                        style="color:#a259ff;border-color:rgba(162,89,255,.35);background:rgba(162,89,255,.07)">UI/UX</span>
                     <span class="about-card-tag"
                         style="color:#21759b;border-color:rgba(33,117,155,.35);background:rgba(33,117,155,.07)">WordPress</span>
+                    <span class="about-card-tag"
+                        style="color:#21759b;border-color:rgba(155, 82, 33, 0.35);background:rgba(155, 82, 33, 0.07)">Applications</span>
                 </div>
 
                 <div class="about-divider"></div>
@@ -3567,17 +3635,7 @@
                 <div class="sk-name">UI/UX Design</div>
                 <div class="sk-desc">Intuitive & conversion-focused interfaces</div>
             </div>
-            <!-- 6. Meta Ads -->
-            <div class="skill-card up" style="--card-glow: rgba(0,81,162,.2)">
-                <div class="sk-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#4da6ff" stroke-width="1.8"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 20V10" />
-                        <path d="M12 20V4" />
-                        <path d="M6 20v-6" />
-                    </svg></div>
-                <div class="sk-name">Meta Ads</div>
-                <div class="sk-desc">Audience targeting & campaign optimization</div>
-            </div>
+
             <!-- 7. Automation -->
             <div class="skill-card up" style="--card-glow: rgba(255,213,0,.2)">
                 <div class="sk-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#FFD500" stroke-width="1.8"
@@ -4229,7 +4287,7 @@
         <p><a href="support.html" class="footer-link"><strong>Support</strong></a> the developer.</p>
 
         <p style="margin-top:8px;font-size:.8rem">
-            &copy; 2025 All Rights Reserved |
+            &copy; 2026 All Rights Reserved |
             <strong><a href="#hero" class="footer-link">Shreshth Chaurasiya</a></strong>
         </p>
     </footer>
@@ -4630,7 +4688,7 @@
         //  TYPEWRITER
         // ══════════════════════════════════════════════════
         const typedEl = document.getElementById('typed');
-        const words = ['Full Stack Developer', 'Creative Problem Solver', 'Python Developer', 'Web Architect', 'Open Source Contributor', 'AI/ML Enthusiast'];
+        const words = ['Full Stack Developer', 'UI/UX Developer', 'Meta Ads Expert', 'Application Developer', 'Creative Problem Solver', 'Web Architect'];
         let wi = 0, ci = 0, isDeleting = false;
         (function type() {
             const w = words[wi];
@@ -4779,7 +4837,7 @@
         }
 
         // ══════════════════════════════════════════════════
-        //  TESTIMONIALS SLIDER
+        //  TESTIMONIALS SLIDER & CURSOR ANIMATION
         // ══════════════════════════════════════════════════
         const testiTrack = document.getElementById('testiTrack');
         const testiPrevBtn = document.getElementById('testiPrevBtn');
@@ -4795,7 +4853,74 @@
                 const cardWidth = testiTrack.firstElementChild.offsetWidth + 24; // Card width + gap
                 testiTrack.scrollBy({ left: -cardWidth, behavior: 'smooth' });
             });
+
+            // Drag to scroll functionality
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            testiTrack.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX - testiTrack.offsetLeft;
+                scrollLeft = testiTrack.scrollLeft;
+                testiTrack.style.scrollBehavior = 'auto';
+                testiTrack.style.userSelect = 'none';
+                testiTrack.style.webkitUserSelect = 'none';
+            });
+
+            testiTrack.addEventListener('mouseleave', () => {
+                isDown = false;
+            });
+
+            testiTrack.addEventListener('mouseup', () => {
+                isDown = false;
+                testiTrack.style.scrollBehavior = 'smooth';
+                testiTrack.style.userSelect = '';
+                testiTrack.style.webkitUserSelect = '';
+            });
+
+            testiTrack.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - testiTrack.offsetLeft;
+                const walk = (x - startX) * 1.5; // Scroll speed multiplier
+                testiTrack.scrollLeft = scrollLeft - walk;
+            });
         }
+
+        // Testimonial card hover cursor custom animation
+        const cursorEl = document.getElementById('cur');
+        const cursorDotEl = document.getElementById('cur-dot');
+        
+        document.querySelectorAll('.testi-card').forEach(card => {
+            const cardColor = card.style.getPropertyValue('--testi-color') || '#ffffff';
+            
+            card.addEventListener('mouseenter', () => {
+                if (cursorEl && cursorDotEl) {
+                    cursorEl.style.width = '76px';
+                    cursorEl.style.height = '76px';
+                    cursorEl.style.borderColor = cardColor;
+                    cursorEl.style.backgroundColor = 'rgba(255, 255, 255, 0.04)';
+                    cursorEl.style.backdropFilter = 'blur(6px)';
+                    cursorEl.style.mixBlendMode = 'normal';
+                    cursorEl.innerHTML = `<span style="font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif; color: ${cardColor}; margin-top: 1px;">DRAG</span>`;
+                    cursorDotEl.style.opacity = '0';
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                if (cursorEl && cursorDotEl) {
+                    cursorEl.style.width = '';
+                    cursorEl.style.height = '';
+                    cursorEl.style.borderColor = '';
+                    cursorEl.style.backgroundColor = '';
+                    cursorEl.style.backdropFilter = '';
+                    cursorEl.style.mixBlendMode = 'difference';
+                    cursorEl.innerHTML = '';
+                    cursorDotEl.style.opacity = '1';
+                }
+            });
+        });
 
         // Testimonial card observer for scroll animations
         document.querySelectorAll('.testi-card').forEach(c => {

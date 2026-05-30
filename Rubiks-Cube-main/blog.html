@@ -1,0 +1,2821 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Shreshth Chaurasiya — Web Development, AI Automation & Business Growth</title>
+    <meta name="description"
+        content="Read expert articles on professional website development, AI automation, ERP/CRM software, MLM affiliate platforms, and digital marketing by Shreshth Chaurasiya.">
+    <meta name="keywords"
+        content="web development blog, AI automation, ERP software, MLM software, affiliate marketing, business website, digital presence, chatbot, WhatsApp automation, custom software, Shreshth Chaurasiya">
+    <meta name="author" content="Shreshth Chaurasiya">
+    <meta name="robots" content="index, follow">
+
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:title" content="Blog | Shreshth Chaurasiya — Tech & Business Insights">
+    <meta property="og:description"
+        content="Expert articles on web development, AI automation, ERP systems, MLM platforms, and building a powerful digital presence for your business.">
+    <meta property="og:image" content="preview.png">
+    <meta property="og:url" content="https://brahmpreett.github.io/blog.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Shreshth Chaurasiya Portfolio">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog | Shreshth Chaurasiya">
+    <meta name="twitter:description"
+        content="Expert articles on web development, AI automation, ERP systems, MLM platforms, and building a powerful digital presence.">
+    <meta name="twitter:image" content="twitter-card.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://brahmpreett.github.io/blog.html">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "",
+      "@type": "Blog",
+      "name": "Shreshth Chaurasiya Blog",
+      "description": "Expert articles on web development, AI automation, ERP systems, MLM platforms, and digital presence.",
+      "url": "",
+      "author": {
+        "@type": "Person",
+        "name": "Shreshth Chaurasiya",
+        "url": ""
+      }
+    }
+    </script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #FF5800;
+            --blue: #0051A2;
+            --yellow: #FFD500;
+            --green: #009B48;
+            --orange: #C41E3A;
+            --bg: #08080f;
+            --bg2: #0e0e18;
+            --text: #e8e8f2;
+            --dim: #7a7a99;
+        }
+
+        .footer-link {
+            font-weight: inherit;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            transform: scale(1.05);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* ── CURSOR ── */
+        #cur {
+            width: 36px;
+            height: 36px;
+            border: 2px solid var(--yellow);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .3s cubic-bezier(0.25, 1, 0.5, 1),
+                height .3s cubic-bezier(0.25, 1, 0.5, 1),
+                border-color .3s,
+                background-color .3s,
+                backdrop-filter .3s;
+            mix-blend-mode: difference;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        #cur-dot {
+            width: 5px;
+            height: 5px;
+            background: var(--yellow);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: opacity .3s;
+        }
+
+        body:has(a:hover) #cur,
+        body:has(button:hover) #cur {
+            width: 52px;
+            height: 52px;
+            border-color: var(--orange);
+        }
+
+        a,
+        button,
+        [onclick],
+        [role="button"] {
+            cursor: none;
+        }
+
+        /* ── SCROLL PROGRESS ── */
+        #progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            z-index: 9998;
+            background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow));
+            width: 0;
+        }
+
+        /* ── PARTICLES ── */
+        #bg-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 18px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(8, 8, 15, .65);
+            backdrop-filter: blur(28px) saturate(1.4);
+            -webkit-backdrop-filter: blur(28px) saturate(1.4);
+            border-bottom: 1px solid rgba(255, 255, 255, .06);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .logo-cube {
+            width: 28px;
+            height: 28px;
+            transform-style: preserve-3d;
+            animation: logoSpin 5s linear infinite;
+            position: relative;
+        }
+
+        .logo-cube::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 5px;
+            background: linear-gradient(135deg, var(--red), var(--orange));
+            transform: translateZ(4px);
+            box-shadow: 0 0 16px rgba(196, 30, 58, .5);
+        }
+
+        @keyframes logoSpin {
+            from {
+                transform: rotateY(0deg) rotateX(15deg);
+            }
+
+            to {
+                transform: rotateY(360deg) rotateX(15deg);
+            }
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1001;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--text);
+            transition: transform .3s, opacity .3s;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--dim);
+            text-decoration: none;
+            font-size: .92rem;
+            font-weight: 500;
+            transition: color .3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--yellow);
+            transition: width .3s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--yellow);
+        }
+
+        /* ── BLOG HERO ── */
+        .blog-hero {
+            position: relative;
+            padding: 160px 24px 40px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .blog-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            background: rgba(255, 213, 0, .07);
+            border: 1px solid rgba(255, 213, 0, .22);
+            border-radius: 100px;
+            font-size: .78rem;
+            color: var(--yellow);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .blog-hero-badge-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--yellow);
+            border-radius: 50%;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: .4;
+                transform: scale(.7)
+            }
+        }
+
+        .blog-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 16px;
+        }
+
+        .blog-title span {
+            background: linear-gradient(135deg, var(--red), var(--yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .blog-subtitle {
+            font-size: 1.1rem;
+            color: var(--dim);
+            max-width: 640px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        /* ── STATS ROW ── */
+        .blog-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 45px;
+            flex-wrap: wrap;
+        }
+
+        .blog-stat {
+            text-align: center;
+        }
+
+        .blog-stat-n {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--red), var(--yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .blog-stat-l {
+            font-size: .8rem;
+            color: var(--dim);
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── FILTER BUTTONS ── */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+            padding: 0 16px;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: var(--dim);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .filter-btn.active {
+            background: rgba(255, 213, 0, 0.08);
+            border-color: var(--yellow);
+            color: var(--yellow);
+            box-shadow: 0 0 15px rgba(255, 213, 0, 0.15);
+        }
+
+        /* ── BLOG GRID ── */
+        .blog-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 28px;
+        }
+
+        /* ── BLOG CARD ── */
+        .blog-card {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.14);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 0 25px var(--blog-glow, rgba(162, 89, 255, 0.08));
+        }
+
+        .blog-card.hidden-card {
+            display: none !important;
+        }
+
+        /* Accent bar at top */
+        .blog-card-accent {
+            height: 3px;
+            width: 100%;
+            background: linear-gradient(90deg, var(--accent-from, var(--red)), var(--accent-to, var(--yellow)));
+        }
+
+        .blog-card-body {
+            padding: 28px 26px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.78rem;
+            color: var(--dim);
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .blog-category {
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.5px;
+        }
+
+        .cat-web {
+            background: rgba(0, 81, 162, 0.15);
+            border: 1px solid rgba(0, 81, 162, 0.3);
+            color: #4da6ff;
+        }
+
+        .cat-auto {
+            background: rgba(255, 88, 0, 0.15);
+            border: 1px solid rgba(255, 88, 0, 0.3);
+            color: #ff884d;
+        }
+
+        .cat-erp {
+            background: rgba(0, 188, 212, 0.15);
+            border: 1px solid rgba(0, 188, 212, 0.3);
+            color: #26d9ec;
+        }
+
+        .cat-mlm {
+            background: rgba(162, 89, 255, 0.15);
+            border: 1px solid rgba(162, 89, 255, 0.3);
+            color: #b98aff;
+        }
+
+        .cat-social {
+            background: rgba(0, 155, 72, 0.15);
+            border: 1px solid rgba(0, 155, 72, 0.3);
+            color: #33cc77;
+        }
+
+        .cat-dev {
+            background: rgba(255, 213, 0, 0.15);
+            border: 1px solid rgba(255, 213, 0, 0.3);
+            color: #ffd633;
+        }
+
+        .cat-design {
+            background: rgba(196, 30, 58, 0.15);
+            border: 1px solid rgba(196, 30, 58, 0.3);
+            color: #ff6680;
+        }
+
+        .blog-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .blog-card-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 1.8;
+        }
+
+        .blog-card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.35;
+            margin-bottom: 12px;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .blog-card:hover .blog-card-title {
+            color: var(--yellow);
+        }
+
+        .blog-card-desc {
+            font-size: 0.92rem;
+            line-height: 1.65;
+            color: var(--dim);
+            margin-bottom: 18px;
+            flex-grow: 1;
+        }
+
+        /* ── READ MORE EXPANDABLE ── */
+        .blog-card-full {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s;
+            padding: 0 26px;
+        }
+
+        .blog-card-full.expanded {
+            max-height: 2000px;
+            padding: 0 26px 20px;
+        }
+
+        .blog-card-full-inner {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 20px;
+        }
+
+        .blog-card-full-inner h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+            margin-top: 18px;
+        }
+
+        .blog-card-full-inner h3:first-child {
+            margin-top: 0;
+        }
+
+        .blog-card-full-inner p {
+            font-size: 0.92rem;
+            line-height: 1.7;
+            color: var(--dim);
+            margin-bottom: 12px;
+        }
+
+        .blog-card-full-inner ul {
+            margin: 8px 0 14px 18px;
+            color: var(--dim);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .blog-card-full-inner li {
+            margin-bottom: 5px;
+        }
+
+        .blog-card-full-inner strong {
+            color: var(--text);
+        }
+
+        .blog-card-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 16px 26px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .read-btn {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.2s, color 0.2s;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .read-btn:hover,
+        .blog-card:hover .read-btn {
+            color: var(--yellow);
+            gap: 10px;
+        }
+
+        .read-btn .arrow {
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .read-btn.open .arrow {
+            transform: rotate(90deg);
+        }
+
+        .blog-read-time {
+            font-size: 0.78rem;
+            color: var(--dim);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .blog-read-time svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--dim);
+            fill: none;
+        }
+
+        /* ── SCROLL ANIMATIONS ── */
+        .up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .up.vis {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: rgba(5, 5, 8, .85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 36px 60px;
+            text-align: center;
+            color: var(--dim);
+            font-size: .9rem;
+            border-top: 1px solid rgba(255, 255, 255, .06);
+            position: relative;
+            z-index: 1;
+        }
+
+        footer strong {
+            color: var(--yellow);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dim);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+        }
+
+        .social-icon:hover {
+            border-color: var(--yellow);
+            color: var(--yellow);
+            background: rgba(255, 213, 0, 0.05);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 213, 0, 0.15);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 860px) {
+            nav {
+                padding: 18px 24px;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 100%;
+                background: var(--bg);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                transition: right .4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1000;
+                padding: 40px;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .blog-hero {
+                padding: 140px 16px 30px;
+            }
+
+            .blog-title {
+                letter-spacing: -1px;
+            }
+
+            .blog-subtitle {
+                font-size: 1rem;
+            }
+
+            .blog-stats {
+                gap: 24px;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .blog-section {
+                padding: 0 16px 60px;
+            }
+
+            .filter-btn {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+
+            footer {
+                padding: 36px 20px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .blog-card-body {
+                padding: 22px 18px;
+            }
+
+            .blog-card-full {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .blog-card-full.expanded {
+                padding: 0 18px 16px;
+            }
+
+            .blog-card-footer {
+                padding: 14px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cur"></div>
+    <div id="cur-dot"></div>
+    <div id="progress"></div>
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- NAV -->
+    <nav>
+        <a href="index.html#hero" class="logo">
+            <div class="logo-cube"></div>
+            Portfolio
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="blog.html" class="active">Blog</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- BLOG HERO -->
+    <header class="blog-hero">
+        <div class="blog-hero-badge">
+            <div class="blog-hero-badge-dot"></div>
+            Knowledge Hub
+        </div>
+        <h1 class="blog-title">My <span>Tech Blog</span></h1>
+        <p class="blog-subtitle">Insights on professional website development, AI automation, ERP/CRM systems, MLM
+            platforms, and building a powerful digital presence for your business.</p>
+
+        <div class="blog-stats">
+            <div class="blog-stat">
+                <div class="blog-stat-n">30+</div>
+                <div class="blog-stat-l">Articles</div>
+            </div>
+            <div class="blog-stat">
+                <div class="blog-stat-n">5</div>
+                <div class="blog-stat-l">Categories</div>
+            </div>
+            <div class="blog-stat">
+                <div class="blog-stat-n">100+</div>
+                <div class="blog-stat-l">Business Tips</div>
+            </div>
+        </div>
+
+        <div class="filter-container">
+            <button class="filter-btn active" data-category="all">All Articles</button>
+            <button class="filter-btn" data-category="web">Website & Growth</button>
+            <button class="filter-btn" data-category="auto">AI & Automation</button>
+            <button class="filter-btn" data-category="erp">ERP & Software</button>
+            <button class="filter-btn" data-category="mlm">MLM & Affiliate</button>
+            <button class="filter-btn" data-category="social">Social Media</button>
+        </div>
+    </header>
+
+    <!-- BLOG SECTION -->
+    <main class="blog-section">
+        <div class="blog-grid" id="blogGrid">
+
+            <!-- ════════════════════════════════════════════ -->
+            <!--  WEBSITE / BUSINESS GROWTH                  -->
+            <!-- ════════════════════════════════════════════ -->
+
+            <!-- 1 ★ Best 5 -->
+            <article class="blog-card up" data-category="web"
+                style="--blog-glow: rgba(0,81,162,0.18); --accent-from: #0051A2; --accent-to: #4da6ff;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#4da6ff;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="2" y1="12" x2="22" y2="12" />
+                            <path
+                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-web">Website & Growth</span>
+                        <span>May 28, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">Why Every Business Needs a Professional Website</h2>
+                    <p class="blog-card-desc">In today's digital-first world, your website is your digital storefront.
+                        If you don't have a professional website, you're invisible to a massive percentage of potential
+                        customers.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>Your Website is Your 24/7 Salesperson</h3>
+                        <p>Unlike a physical shop that closes at night, a website is always open. Whether it's 2 AM or a
+                            public holiday, potential customers can visit your website, learn about your services, view
+                            your products, and even place orders. A professional website works for you even when you're
+                            sleeping.</p>
+                        <h3>First Impressions Matter — A Lot</h3>
+                        <p>Studies show that <strong>75% of users judge a company's credibility</strong> based on its
+                            website design. If your website looks outdated or unprofessional, visitors will leave within
+                            seconds. A well-designed website with clean layouts, fast loading speed, and clear messaging
+                            instantly builds trust.</p>
+                        <h3>Reach Customers Beyond Your City</h3>
+                        <p>A local shop can only serve people who walk in. But a website? It removes all geographical
+                            barriers. Whether you sell handmade products, offer coaching services, or run a local
+                            business — a website lets customers from anywhere in India (or the world) find you through
+                            Google Search.</p>
+                        <h3>It's More Affordable Than You Think</h3>
+                        <p>Many small business owners think websites are expensive. But the truth is, a professionally
+                            built website can cost less than one month of shop rent, yet it delivers value for years.
+                            It's one of the highest-ROI investments any business can make.</p>
+                        <ul>
+                            <li><strong>Credibility:</strong> Customers trust businesses with websites more than those
+                                without.</li>
+                            <li><strong>Lead Generation:</strong> A website with a contact form or WhatsApp button
+                                generates enquiries automatically.</li>
+                            <li><strong>SEO Traffic:</strong> Google sends free, organic traffic to well-optimized
+                                websites every day.</li>
+                            <li><strong>Competitive Edge:</strong> If your competitor has a website and you don't,
+                                they're winning those customers.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>5 min</span>
+                </div>
+            </article>
+
+            <!-- 2 -->
+            <article class="blog-card up" data-category="web"
+                style="--blog-glow: rgba(0,81,162,0.18); --accent-from: #4da6ff; --accent-to: #00bcd4;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#4da6ff;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" />
+                            <line x1="8" y1="21" x2="16" y2="21" />
+                            <line x1="12" y1="17" x2="12" y2="21" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-web">Website & Growth</span>
+                        <span>May 26, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">Website vs Social Media: Which One is More Important?</h2>
+                    <p class="blog-card-desc">Social media gets you attention. A website converts that attention into
+                        real business. Here's why you need both — but why your website should always be the foundation.
+                    </p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>Social Media is Rented Land</h3>
+                        <p>Your Instagram or Facebook page is built on someone else's platform. The algorithm can change
+                            overnight, your reach can drop to zero, or your account can get suspended. You have
+                            <strong>zero control</strong> over these platforms. A website, on the other hand, is
+                            <strong>your own digital property</strong> — you own it, you control it.</p>
+                        <h3>A Website Converts, Social Media Attracts</h3>
+                        <p>Social media is great for brand awareness and engagement. But when a customer is ready to
+                            buy, they want a proper website with detailed information, pricing, contact forms, and trust
+                            signals (like testimonials and case studies). A website is where the actual sale or enquiry
+                            happens.</p>
+                        <h3>The Best Strategy: Use Both Together</h3>
+                        <ul>
+                            <li>Use social media to <strong>attract and engage</strong> your audience.</li>
+                            <li>Use your website to <strong>convert visitors into paying customers</strong>.</li>
+                            <li>Add your website link in your social media bio, posts, and ads.</li>
+                            <li>Use retargeting pixels from your website to run smarter ads on social media.</li>
+                        </ul>
+                        <p>The winning formula is: <strong>Social Media + Website = Maximum Business Growth.</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>4 min</span>
+                </div>
+            </article>
+
+            <!-- 3 -->
+            <article class="blog-card up" data-category="web"
+                style="--blog-glow: rgba(0,81,162,0.18); --accent-from: #ff6680; --accent-to: #FF5800;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#ff6680;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                            <line x1="12" y1="9" x2="12" y2="13" />
+                            <line x1="12" y1="17" x2="12.01" y2="17" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-web">Website & Growth</span>
+                        <span>May 24, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">Why Relying Only on Instagram or Facebook is Risky</h2>
+                    <p class="blog-card-desc">Your entire business shouldn't depend on a platform you don't own. One
+                        algorithm change, one account ban — and years of work can disappear overnight.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>The Algorithm Doesn't Care About Your Business</h3>
+                        <p>Instagram and Facebook constantly change their algorithms. Posts that used to reach 10,000
+                            people now reach 200. Many business owners have seen their engagement drop by
+                            <strong>80-90%</strong> without any explanation. Your content is at the mercy of the
+                            algorithm.</p>
+                        <h3>Account Suspension is Real</h3>
+                        <p>Accounts get disabled, hacked, or suspended every day. If your only online presence is your
+                            Instagram page, losing that account means losing your entire customer base, all your
+                            content, and all your followers — instantly.</p>
+                        <h3>The Solution: Build Your Own Digital Home</h3>
+                        <p>A professional website gives you a permanent, algorithm-proof digital presence. Even if every
+                            social media platform disappeared tomorrow, your website would still be there, bringing in
+                            customers through Google search. Smart businesses use social media as a <strong>distribution
+                                channel</strong>, not their entire business foundation.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>3 min</span>
+                </div>
+            </article>
+
+            <!-- 4 -->
+            <article class="blog-card up" data-category="web"
+                style="--blog-glow: rgba(0,81,162,0.18); --accent-from: #009B48; --accent-to: #4da6ff;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#33cc77;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-web">Website & Growth</span>
+                        <span>May 22, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">How a Website Builds Customer Trust</h2>
+                    <p class="blog-card-desc">Before spending money, customers Google your business. A well-designed
+                        website with testimonials, case studies, and clear information instantly makes you look
+                        professional and trustworthy.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>Customers Research Before They Buy</h3>
+                        <p>Over <strong>80% of consumers</strong> research online before making a purchase decision. If
+                            they can't find your website, they'll go to your competitor who has one. A website acts as
+                            your digital brochure, showing your expertise, portfolio, and customer results.</p>
+                        <h3>Trust Signals That Convert</h3>
+                        <ul>
+                            <li><strong>Testimonials & Reviews:</strong> Real customer feedback builds social proof.
+                            </li>
+                            <li><strong>Portfolio & Case Studies:</strong> Show what you've done, not just what you
+                                claim.</li>
+                            <li><strong>Professional Design:</strong> A polished website signals that you take your
+                                business seriously.</li>
+                            <li><strong>Contact Information:</strong> A visible phone number, email, and address makes
+                                you approachable.</li>
+                            <li><strong>SSL Certificate:</strong> The padlock icon in the browser URL bar shows your
+                                site is secure.</li>
+                        </ul>
+                        <p>Your website is often the first interaction a customer has with your brand. Make it count.
+                        </p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>4 min</span>
+                </div>
+            </article>
+
+            <!-- 5 -->
+            <article class="blog-card up" data-category="web"
+                style="--blog-glow: rgba(0,81,162,0.18); --accent-from: #FFD500; --accent-to: #FF5800;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#ffd633;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                            <polyline points="9 22 9 12 15 12 15 22" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-web">Website & Growth</span>
+                        <span>May 20, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">Why Small Businesses Should Go Online</h2>
+                    <p class="blog-card-desc">If your business isn't online, it doesn't exist for a huge chunk of
+                        customers. Going digital isn't expensive — it's essential for survival and growth in 2026.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>The Digital Shift is Real</h3>
+                        <p>India has over <strong>700 million internet users</strong>. People search for everything
+                            online — from nearby restaurants to tutoring services. If your small business isn't showing
+                            up in these searches, you're leaving money on the table every single day.</p>
+                        <h3>Low Cost, High Return</h3>
+                        <p>Going online doesn't mean spending lakhs. A professional website, a Google Business Profile,
+                            and basic social media presence can be set up for a fraction of what traditional advertising
+                            costs. And unlike a newspaper ad that disappears after one day, your online presence works
+                            <strong>24/7, 365 days</strong>.</p>
+                        <h3>Compete with the Big Players</h3>
+                        <p>Online, a small business with a great website can look just as professional as a large
+                            corporation. Good branding, fast website, and genuine customer reviews — these things level
+                            the playing field and let you compete with businesses 10x your size.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>4 min</span>
+                </div>
+            </article>
+
+            <!-- 6 -->
+            <article class="blog-card up" data-category="web"
+                style="--blog-glow: rgba(0,81,162,0.18); --accent-from: #a259ff; --accent-to: #4da6ff;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#b98aff;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" />
+                            <path d="M3 9h18" />
+                            <path d="M9 21V9" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-web">Website & Growth</span>
+                        <span>May 18, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">What is a Landing Page and Why Does Your Business Need One?</h2>
+                    <p class="blog-card-desc">A landing page is a focused, single-purpose web page designed to convert
+                        visitors into leads or customers. It's one of the most powerful marketing tools available today.
+                    </p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>Landing Page vs Regular Website Page</h3>
+                        <p>A regular website page has navigation menus, multiple links, and lots of information. A
+                            landing page strips all that away. It has <strong>one goal</strong>: get the visitor to take
+                            a specific action — fill a form, call you, buy a product, or sign up. No distractions, just
+                            conversion.</p>
+                        <h3>When to Use a Landing Page</h3>
+                        <ul>
+                            <li>Running Facebook or Google Ads — send ad traffic to a dedicated landing page, not your
+                                homepage.</li>
+                            <li>Launching a new product or service.</li>
+                            <li>Collecting leads for a webinar, course, or event.</li>
+                            <li>Promoting a limited-time offer or discount.</li>
+                        </ul>
+                        <p>Businesses that use dedicated landing pages for their ad campaigns see <strong>2-5x higher
+                                conversion rates</strong> compared to sending traffic to a general homepage.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>3 min</span>
+                </div>
+            </article>
+
+            <!-- 7 -->
+            <article class="blog-card up" data-category="web"
+                style="--blog-glow: rgba(255,88,0,0.18); --accent-from: #FF5800; --accent-to: #FFD500;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#ff884d;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 6v6l4 2" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-web">Website & Growth</span>
+                        <span>May 16, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">How a Slow Website Can Hurt Your Business</h2>
+                    <p class="blog-card-desc">A website that takes more than 3 seconds to load loses over 50% of its
+                        visitors. Speed isn't just a feature — it's a business necessity.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>Speed Equals Revenue</h3>
+                        <p>Amazon found that every <strong>100 milliseconds of delay</strong> in page load time cost
+                            them 1% in sales. Google has confirmed that page speed is a ranking factor. A slow website
+                            hurts you in two ways: visitors leave before the page loads, and Google ranks you lower in
+                            search results.</p>
+                        <h3>What Makes a Website Slow?</h3>
+                        <ul>
+                            <li>Unoptimized images (large file sizes)</li>
+                            <li>Cheap or overloaded hosting servers</li>
+                            <li>Too many plugins or heavy scripts</li>
+                            <li>No caching or CDN (Content Delivery Network)</li>
+                            <li>Poorly written code</li>
+                        </ul>
+                        <p>A professionally developed website with clean code, optimized assets, and proper hosting can
+                            load in under <strong>2 seconds</strong> — giving your business a massive competitive
+                            advantage.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>3 min</span>
+                </div>
+            </article>
+
+            <!-- 8 -->
+            <article class="blog-card up" data-category="web"
+                style="--blog-glow: rgba(0,155,72,0.18); --accent-from: #009B48; --accent-to: #00bcd4;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#33cc77;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                            <line x1="12" y1="18" x2="12.01" y2="18" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-web">Website & Growth</span>
+                        <span>May 14, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">Why Mobile-Friendly Websites Are Necessary Today</h2>
+                    <p class="blog-card-desc">Over 75% of internet traffic in India comes from mobile phones. If your
+                        website doesn't work perfectly on mobile, you're losing the majority of your potential
+                        customers.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>Mobile-First is No Longer Optional</h3>
+                        <p>Google now uses <strong>mobile-first indexing</strong> — meaning it looks at the mobile
+                            version of your website first when deciding how to rank you. If your site looks broken or is
+                            hard to use on a phone, Google will rank your competitors higher.</p>
+                        <h3>What Makes a Website Mobile-Friendly?</h3>
+                        <ul>
+                            <li><strong>Responsive Design:</strong> The layout automatically adjusts to any screen size.
+                            </li>
+                            <li><strong>Touch-Friendly Buttons:</strong> Buttons and links are large enough to tap
+                                easily.</li>
+                            <li><strong>Fast Loading on 4G/3G:</strong> Optimized images and lightweight code.</li>
+                            <li><strong>Readable Text:</strong> No pinching and zooming required to read content.</li>
+                            <li><strong>Easy Navigation:</strong> Hamburger menus, sticky headers, and clear CTAs.</li>
+                        </ul>
+                        <p>A mobile-optimized website ensures that no matter how someone finds you — through Google,
+                            WhatsApp link, social media — they have a <strong>seamless experience</strong>.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>4 min</span>
+                </div>
+            </article>
+
+            <!-- ════════════════════════════════════════════ -->
+            <!--  AI AUTOMATION                               -->
+            <!-- ════════════════════════════════════════════ -->
+
+            <!-- 9 ★ Best 5 -->
+            <article class="blog-card up" data-category="auto"
+                style="--blog-glow: rgba(255,88,0,0.18); --accent-from: #FF5800; --accent-to: #C41E3A;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#ff884d;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="17" x2="12.01" y2="17" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-auto">AI & Automation</span>
+                        <span>May 27, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">What is AI Automation and How Does It Help Businesses?</h2>
+                    <p class="blog-card-desc">AI automation means using artificial intelligence to handle repetitive
+                        business tasks automatically — from answering customer queries to managing leads — saving time
+                        and money.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>Understanding AI Automation in Simple Terms</h3>
+                        <p>Think of AI automation as hiring a super-efficient digital employee who never sleeps, never
+                            takes breaks, and never makes errors. It uses machine learning and rules to <strong>automate
+                                tasks</strong> that normally require manual human work — like responding to WhatsApp
+                            messages, sending follow-up emails, or updating CRM records.</p>
+                        <h3>Real-World Examples</h3>
+                        <ul>
+                            <li><strong>AI Chatbot on Website:</strong> Answers visitor questions 24/7, collects leads,
+                                and routes enquiries to the right person.</li>
+                            <li><strong>WhatsApp Auto-Reply:</strong> Sends instant replies to common questions, shares
+                                product catalogues, and books appointments.</li>
+                            <li><strong>Automated Lead Follow-Up:</strong> Sends a sequence of messages to new leads
+                                over days/weeks without manual effort.</li>
+                            <li><strong>Invoice & Report Generation:</strong> Automatically creates invoices, receipts,
+                                and business reports.</li>
+                        </ul>
+                        <h3>Why Small Businesses Need AI Automation</h3>
+                        <p>You don't need to be a tech giant to benefit from AI. Small businesses with 5-50 employees
+                            can save <strong>10-20 hours per week</strong> by automating repetitive tasks. That's time
+                            you can spend growing your business instead of doing admin work.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>6 min</span>
+                </div>
+            </article>
+
+            <!-- 10 -->
+            <article class="blog-card up" data-category="auto"
+                style="--blog-glow: rgba(0,155,72,0.18); --accent-from: #009B48; --accent-to: #33cc77;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#33cc77;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-auto">AI & Automation</span>
+                        <span>May 25, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">How WhatsApp Automation Can Save Time for Businesses</h2>
+                    <p class="blog-card-desc">WhatsApp is where your customers already are. Automating your WhatsApp
+                        responses, order confirmations, and follow-ups can save hours of manual work every day.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>Why WhatsApp for Business?</h3>
+                        <p>India has over <strong>500 million WhatsApp users</strong>. For most small and medium
+                            businesses, WhatsApp is the primary customer communication channel. But manually replying to
+                            every message, sending order updates, and following up with leads is time-consuming and
+                            error-prone.</p>
+                        <h3>What Can Be Automated?</h3>
+                        <ul>
+                            <li><strong>Welcome Messages:</strong> Auto-greet new customers when they message you first.
+                            </li>
+                            <li><strong>Quick Replies:</strong> Instant responses to FAQs like pricing, location,
+                                timings.</li>
+                            <li><strong>Order Confirmations:</strong> Automatic order receipt and tracking updates.</li>
+                            <li><strong>Appointment Reminders:</strong> Send appointment reminders 24 hours before.</li>
+                            <li><strong>Lead Nurturing:</strong> Automated drip sequences to warm up cold leads.</li>
+                        </ul>
+                        <p>Using WhatsApp Business API with tools like n8n or custom automation, even a 2-person team
+                            can handle <strong>hundreds of customer conversations daily</strong> without missing a
+                            single message.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>5 min</span>
+                </div>
+            </article>
+
+            <!-- 11 -->
+            <article class="blog-card up" data-category="auto"
+                style="--blog-glow: rgba(162,89,255,0.18); --accent-from: #a259ff; --accent-to: #FF5800;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#b98aff;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="10" rx="2" />
+                            <circle cx="12" cy="5" r="2" />
+                            <path d="M12 7v4" />
+                            <line x1="8" y1="16" x2="8" y2="16" />
+                            <line x1="16" y1="16" x2="16" y2="16" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-auto">AI & Automation</span>
+                        <span>May 23, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">What is an AI Chatbot and Why is It Useful?</h2>
+                    <p class="blog-card-desc">An AI chatbot is a virtual assistant on your website that talks to
+                        visitors, answers their questions, collects their details, and helps them make decisions — all
+                        without any human involvement.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>More Than Just Auto-Replies</h3>
+                        <p>Modern AI chatbots are much more than simple "if-then" bots. They understand context,
+                            remember previous messages in a conversation, and can guide visitors through complex
+                            decision trees. They can recommend products, calculate estimates, and even schedule
+                            meetings.</p>
+                        <h3>Benefits for Your Business</h3>
+                        <ul>
+                            <li><strong>24/7 Availability:</strong> Never miss a customer enquiry, even at 3 AM.</li>
+                            <li><strong>Instant Response:</strong> No more waiting — customers get answers in seconds.
+                            </li>
+                            <li><strong>Lead Qualification:</strong> The bot collects name, phone, budget, and
+                                requirements before you even talk to the customer.</li>
+                            <li><strong>Cost Savings:</strong> One chatbot can handle the work of 3-5 customer support
+                                agents.</li>
+                            <li><strong>Data Collection:</strong> Every conversation is stored — you get valuable
+                                insights about what customers are asking.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>4 min</span>
+                </div>
+            </article>
+
+            <!-- 12 -->
+            <article class="blog-card up" data-category="auto"
+                style="--blog-glow: rgba(255,213,0,0.18); --accent-from: #FFD500; --accent-to: #FF5800;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#ffd633;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1.08-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1.08 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.32 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-auto">AI & Automation</span>
+                        <span>May 21, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">How Automation Reduces Manual Work</h2>
+                    <p class="blog-card-desc">Every hour your team spends on repetitive manual tasks is an hour taken
+                        away from actual business growth. Automation gives that time back to you.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>Common Manual Tasks That Waste Time</h3>
+                        <ul>
+                            <li>Manually entering customer details into spreadsheets</li>
+                            <li>Sending the same WhatsApp reply 50 times a day</li>
+                            <li>Creating invoices by hand</li>
+                            <li>Manually tracking project deadlines</li>
+                            <li>Copy-pasting data between different tools</li>
+                        </ul>
+                        <h3>The Automation Advantage</h3>
+                        <p>With proper automation workflows (using tools like n8n, Zapier, or custom-built solutions),
+                            all of these tasks happen automatically. A new lead fills a form on your website → their
+                            details are instantly added to your CRM → a WhatsApp welcome message is sent → a follow-up
+                            task is created for your sales team. All in <strong>under 5 seconds</strong>, with zero
+                            manual effort.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>4 min</span>
+                </div>
+            </article>
+
+            <!-- 13 -->
+            <article class="blog-card up" data-category="auto"
+                style="--blog-glow: rgba(0,81,162,0.18); --accent-from: #0051A2; --accent-to: #a259ff;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#4da6ff;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 00-3-3.87" />
+                            <path d="M16 3.13a4 4 0 010 7.75" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-auto">AI & Automation</span>
+                        <span>May 19, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">Lead Follow-Up Automation: Why Businesses Need It</h2>
+                    <p class="blog-card-desc">80% of sales require at least 5 follow-ups. But most businesses give up
+                        after 1-2 attempts. Automated follow-ups ensure no lead ever goes cold.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>The Follow-Up Problem</h3>
+                        <p>A potential customer fills your contact form. You call them once — no answer. You forget
+                            about them. That lead is now lost forever. This happens hundreds of times. <strong>Automated
+                                follow-up sequences</strong> solve this completely.</p>
+                        <h3>How It Works</h3>
+                        <p>Day 1: Instant WhatsApp message + email. Day 3: Follow-up with more information. Day 7:
+                            Special offer or case study. Day 14: Final check-in. All of this happens
+                            <strong>automatically</strong>. You set it up once, and it works for every new lead that
+                            comes in — forever.</p>
+                        <p>Businesses that implement automated lead follow-up see an average <strong>30-40%
+                                increase</strong> in conversion rates.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>4 min</span>
+                </div>
+            </article>
+
+            <!-- 14 -->
+            <article class="blog-card up" data-category="auto"
+                style="--blog-glow: rgba(255,88,0,0.18); --accent-from: #C41E3A; --accent-to: #FFD500;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#ff884d;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <polyline points="13 17 18 12 13 7" />
+                            <polyline points="6 17 11 12 6 7" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-auto">AI & Automation</span>
+                        <span>May 17, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">How AI Tools Help Small Businesses Work Faster</h2>
+                    <p class="blog-card-desc">From auto-generating social media captions to predicting sales trends, AI
+                        tools can 10x the productivity of a small team without hiring additional staff.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>AI is Not Just for Big Companies</h3>
+                        <p>Many small business owners think AI is only for companies like Google or Amazon. But today,
+                            there are affordable AI tools designed specifically for small businesses. These tools can
+                            help with content creation, customer support, data analysis, and marketing — all at a
+                            fraction of the cost of hiring specialists.</p>
+                        <h3>Practical AI Tools for Small Businesses</h3>
+                        <ul>
+                            <li><strong>AI Chatbots:</strong> Handle customer queries on your website and WhatsApp 24/7.
+                            </li>
+                            <li><strong>Content Generators:</strong> Create social media posts, blog drafts, and product
+                                descriptions.</li>
+                            <li><strong>Accounting Automation:</strong> Auto-categorize expenses, generate invoices, and
+                                track payments.</li>
+                            <li><strong>Sales Prediction:</strong> Analyze past data to forecast future sales and
+                                inventory needs.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>4 min</span>
+                </div>
+            </article>
+
+            <!-- 15 -->
+            <article class="blog-card up" data-category="auto"
+                style="--blog-glow: rgba(0,155,72,0.18); --accent-from: #009B48; --accent-to: #FFD500;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#33cc77;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M18 20V10" />
+                            <path d="M12 20V4" />
+                            <path d="M6 20v-6" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-auto">AI & Automation</span>
+                        <span>May 15, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">AI Automation vs Manual Work: What is Better?</h2>
+                    <p class="blog-card-desc">Manual processes are slower, error-prone, and expensive. Here's a
+                        side-by-side comparison showing exactly where automation wins — and where human touch still
+                        matters.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>The Comparison</h3>
+                        <ul>
+                            <li><strong>Speed:</strong> Automation completes tasks in seconds. Manual work takes minutes
+                                or hours.</li>
+                            <li><strong>Accuracy:</strong> Machines don't make typos, forget follow-ups, or miscalculate
+                                invoices.</li>
+                            <li><strong>Scalability:</strong> Automation handles 100 tasks as easily as 1. Scaling
+                                manual work means hiring more people.</li>
+                            <li><strong>Cost:</strong> One-time automation setup vs recurring monthly salaries.</li>
+                            <li><strong>Consistency:</strong> Every automated task is done exactly the same way, every
+                                time.</li>
+                        </ul>
+                        <h3>Where Human Touch Still Wins</h3>
+                        <p>Complex negotiations, creative strategy, relationship building, and empathetic customer
+                            handling — these still need humans. The ideal approach is: <strong>automate the repetitive,
+                                focus humans on the creative and strategic.</strong></p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>5 min</span>
+                </div>
+            </article>
+
+            <!-- ════════════════════════════════════════════ -->
+            <!--  BUSINESS SOFTWARE / ERP                     -->
+            <!-- ════════════════════════════════════════════ -->
+
+            <!-- 16 -->
+            <article class="blog-card up" data-category="erp"
+                style="--blog-glow: rgba(0,188,212,0.18); --accent-from: #00bcd4; --accent-to: #4da6ff;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#26d9ec;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <ellipse cx="12" cy="5" rx="9" ry="3" />
+                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                            <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-erp">ERP & Software</span>
+                        <span>May 26, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">What is ERP Software in Simple Words?</h2>
+                    <p class="blog-card-desc">ERP (Enterprise Resource Planning) is software that connects all your
+                        business operations — inventory, billing, HR, accounting — into one unified system, so
+                        everything works together seamlessly.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>ERP = One Dashboard for Your Entire Business</h3>
+                        <p>Imagine managing your sales, inventory, employee payroll, customer data, and accounting — all
+                            from a single dashboard instead of 10 different spreadsheets. That's what ERP does. It
+                            breaks down data silos and gives you a <strong>360° view of your business</strong> in
+                            real-time.</p>
+                        <h3>Who Needs ERP?</h3>
+                        <ul>
+                            <li>Manufacturing businesses with complex inventory</li>
+                            <li>Schools and educational institutions (Student ERP)</li>
+                            <li>E-commerce businesses with warehouse management</li>
+                            <li>Service companies managing projects and billing</li>
+                            <li>Any growing business where spreadsheets are no longer enough</li>
+                        </ul>
+                        <p>Custom ERP software, built specifically for your business processes, eliminates manual data
+                            entry, reduces errors, and gives your management team <strong>real-time visibility</strong>
+                            into every aspect of operations.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>5 min</span>
+                </div>
+            </article>
+
+            <!-- 17 ★ Best 5 -->
+            <article class="blog-card up" data-category="erp"
+                style="--blog-glow: rgba(0,188,212,0.18); --accent-from: #FF5800; --accent-to: #00bcd4;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#26d9ec;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6" />
+                            <polyline points="8 6 2 12 8 18" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-erp">ERP & Software</span>
+                        <span>May 24, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">Custom Software vs Ready-Made Software: Which is Better?</h2>
+                    <p class="blog-card-desc">Ready-made software is quick and affordable. Custom software is built
+                        exactly for your needs. Here's how to decide which one is right for your business.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>Ready-Made Software</h3>
+                        <ul>
+                            <li><strong>Pros:</strong> Cheaper upfront, quick to deploy, regular updates from the
+                                vendor.</li>
+                            <li><strong>Cons:</strong> May not fit your exact workflow, limited customization, ongoing
+                                subscription costs, you share it with competitors.</li>
+                        </ul>
+                        <h3>Custom-Built Software</h3>
+                        <ul>
+                            <li><strong>Pros:</strong> Built around YOUR exact processes, no unnecessary features,
+                                scales with your business, you own the code.</li>
+                            <li><strong>Cons:</strong> Higher initial investment, takes longer to build, requires a good
+                                developer.</li>
+                        </ul>
+                        <h3>The Verdict</h3>
+                        <p>If you're just starting out and your processes are simple, <strong>ready-made tools</strong>
+                            are fine. But once your business grows and you find yourself fighting against the
+                            limitations of off-the-shelf software, it's time to invest in <strong>custom
+                                development</strong>. Custom software pays for itself within 12-18 months through
+                            increased efficiency and reduced manual work.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>6 min</span>
+                </div>
+            </article>
+
+            <!-- 18 -->
+            <article class="blog-card up" data-category="erp"
+                style="--blog-glow: rgba(0,188,212,0.18); --accent-from: #FFD500; --accent-to: #00bcd4;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#ffd633;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-erp">ERP & Software</span>
+                        <span>May 22, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">Why Inventory Management Software is Important</h2>
+                    <p class="blog-card-desc">Manually tracking stock in notebooks or Excel leads to errors,
+                        overstocking, and lost sales. Proper inventory software gives you real-time control over your
+                        products.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>The Cost of Poor Inventory Management</h3>
+                        <p>Overstocking ties up cash. Understocking means lost sales and angry customers. Manual
+                            tracking in spreadsheets inevitably leads to errors that compound over time. Businesses lose
+                            an estimated <strong>5-10% of revenue</strong> due to poor inventory management.</p>
+                        <h3>What Good Inventory Software Does</h3>
+                        <ul>
+                            <li>Real-time stock levels across all locations</li>
+                            <li>Automatic low-stock alerts</li>
+                            <li>Purchase order generation</li>
+                            <li>Barcode/QR code scanning</li>
+                            <li>Sales and inventory reports</li>
+                            <li>Multi-warehouse management</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>4 min</span>
+                </div>
+            </article>
+
+            <!-- 19 -->
+            <article class="blog-card up" data-category="erp"
+                style="--blog-glow: rgba(0,188,212,0.18); --accent-from: #009B48; --accent-to: #26d9ec;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#33cc77;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-erp">ERP & Software</span>
+                        <span>May 20, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">How Billing Software Makes Business Easier</h2>
+                    <p class="blog-card-desc">Professional invoicing, GST calculations, payment tracking, and financial
+                        reports — all automated. Billing software eliminates manual errors and saves hours every week.
+                    </p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>From Manual Receipts to Digital Invoicing</h3>
+                        <p>If you're still creating bills manually or in basic Excel sheets, you're wasting valuable
+                            time and risking calculation errors. Modern billing software creates <strong>professional
+                                GST-compliant invoices</strong> in seconds, automatically calculates taxes, and
+                            maintains a complete payment history for every customer.</p>
+                        <h3>Key Features to Look For</h3>
+                        <ul>
+                            <li>GST/Tax-compliant invoice generation</li>
+                            <li>Payment reminders and due date tracking</li>
+                            <li>Recurring invoice scheduling</li>
+                            <li>Multi-currency support</li>
+                            <li>Financial reports and profit/loss summaries</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>3 min</span>
+                </div>
+            </article>
+
+            <!-- 20 -->
+            <article class="blog-card up" data-category="erp"
+                style="--blog-glow: rgba(255,88,0,0.18); --accent-from: #FF5800; --accent-to: #FFD500;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#ff884d;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7" />
+                            <rect x="14" y="3" width="7" height="7" />
+                            <rect x="14" y="14" width="7" height="7" />
+                            <rect x="3" y="14" width="7" height="7" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-erp">ERP & Software</span>
+                        <span>May 18, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">What is a Business Dashboard and Why Does It Matter?</h2>
+                    <p class="blog-card-desc">A business dashboard gives you a visual summary of your key metrics —
+                        revenue, leads, expenses, performance — all in one screen. It turns raw data into actionable
+                        insights.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>See Your Business at a Glance</h3>
+                        <p>Instead of digging through spreadsheets and reports, a dashboard presents your most important
+                            numbers visually — charts, graphs, and counters that update in real-time. You can see
+                            <strong>today's revenue, this month's leads, pending orders, and team performance</strong>
+                            in a single view.</p>
+                        <h3>Types of Business Dashboards</h3>
+                        <ul>
+                            <li><strong>Sales Dashboard:</strong> Revenue tracking, lead pipeline, conversion rates.
+                            </li>
+                            <li><strong>Financial Dashboard:</strong> Profit/loss, expenses, outstanding invoices.</li>
+                            <li><strong>Marketing Dashboard:</strong> Campaign performance, traffic sources, ROI.</li>
+                            <li><strong>Operations Dashboard:</strong> Inventory levels, order fulfilment, production
+                                status.</li>
+                        </ul>
+                        <p>Decision-making becomes faster and more accurate when you have the right data visualized
+                            properly. A custom-built dashboard tailored to your business KPIs is one of the best
+                            investments you can make.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>4 min</span>
+                </div>
+            </article>
+
+            <!-- 21 -->
+            <article class="blog-card up" data-category="erp"
+                style="--blog-glow: rgba(196,30,58,0.18); --accent-from: #C41E3A; --accent-to: #FF5800;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#ff6680;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                            <line x1="12" y1="9" x2="12" y2="13" />
+                            <line x1="12" y1="17" x2="12.01" y2="17" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-erp">ERP & Software</span>
+                        <span>May 16, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">Why Managing Business Data Manually is Risky</h2>
+                    <p class="blog-card-desc">Spreadsheets crash, files get lost, data gets duplicated, and human errors
+                        compound over time. Manual data management is a ticking time bomb for growing businesses.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>The Hidden Costs of Manual Data Management</h3>
+                        <p>Studies show that <strong>88% of spreadsheets contain errors</strong>. When your business
+                            relies on manually maintained Excel files for customer data, inventory, or financial
+                            records, every entry is a potential error. These errors compound — leading to wrong billing,
+                            lost inventory, missed follow-ups, and incorrect financial reporting.</p>
+                        <h3>What Can Go Wrong</h3>
+                        <ul>
+                            <li>A single wrong formula in Excel can misrepresent your entire revenue.</li>
+                            <li>Customer data stored in multiple places leads to duplicates and confusion.</li>
+                            <li>No version control — changes can't be tracked or rolled back.</li>
+                            <li>No access control — anyone can edit or delete critical data.</li>
+                        </ul>
+                        <p>The solution is a proper <strong>database-backed software system</strong> with user
+                            permissions, audit logs, automatic backups, and data validation rules.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>4 min</span>
+                </div>
+            </article>
+
+            <!-- ════════════════════════════════════════════ -->
+            <!--  MLM / AFFILIATE SOFTWARE                    -->
+            <!-- ════════════════════════════════════════════ -->
+
+            <!-- 22 ★ Best 5 -->
+            <article class="blog-card up" data-category="mlm"
+                style="--blog-glow: rgba(162,89,255,0.18); --accent-from: #a259ff; --accent-to: #FF5800;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#b98aff;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 00-3-3.87" />
+                            <path d="M16 3.13a4 4 0 010 7.75" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-mlm">MLM & Affiliate</span>
+                        <span>May 25, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">What is MLM / Affiliate Software and How Does It Work?</h2>
+                    <p class="blog-card-desc">MLM and affiliate software automates the entire process of tracking
+                        referrals, calculating multi-level commissions, and managing a growing network of partners and
+                        distributors.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>How MLM Software Works</h3>
+                        <p>At its core, MLM software manages a <strong>network tree</strong> of users where each member
+                            can recruit new members. When a sale happens at any level, the software automatically
+                            calculates commissions up the tree based on your business rules — binary plan, matrix plan,
+                            unilevel plan, or any custom structure.</p>
+                        <h3>Key Features of Good MLM Software</h3>
+                        <ul>
+                            <li><strong>Genealogy Tree:</strong> Visual representation of your entire network hierarchy.
+                            </li>
+                            <li><strong>Commission Engine:</strong> Auto-calculation of multi-level commissions,
+                                bonuses, and rewards.</li>
+                            <li><strong>E-Wallet:</strong> Internal wallet system for members to track earnings and
+                                request withdrawals.</li>
+                            <li><strong>KYC Verification:</strong> Identity verification for compliance.</li>
+                            <li><strong>Admin Dashboard:</strong> Complete control over users, plans, payouts, and
+                                reports.</li>
+                            <li><strong>Member Panel:</strong> Each member gets their own dashboard to track their
+                                downline, earnings, and performance.</li>
+                        </ul>
+                        <p>Building reliable MLM software requires deep understanding of compensation structures,
+                            real-time calculations, and rock-solid security — because you're handling real money.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>6 min</span>
+                </div>
+            </article>
+
+            <!-- 23 -->
+            <article class="blog-card up" data-category="mlm"
+                style="--blog-glow: rgba(162,89,255,0.18); --accent-from: #b98aff; --accent-to: #009B48;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#b98aff;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="18" cy="5" r="3" />
+                            <circle cx="6" cy="12" r="3" />
+                            <circle cx="18" cy="19" r="3" />
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-mlm">MLM & Affiliate</span>
+                        <span>May 23, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">How Referral Systems Help Businesses Grow</h2>
+                    <p class="blog-card-desc">Word-of-mouth is the most trusted form of marketing. A digital referral
+                        system turns your happy customers into an army of brand ambassadors who bring in new business.
+                    </p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>The Power of Referral Marketing</h3>
+                        <p>People trust recommendations from friends and family <strong>4x more</strong> than any
+                            advertisement. A referral system incentivizes your existing customers to recommend your
+                            business to their network — and rewards them for every successful referral.</p>
+                        <h3>How It Works</h3>
+                        <p>Each customer gets a unique referral link. When someone signs up or makes a purchase using
+                            that link, the referrer earns a reward — cash, discount, or credits. The software tracks
+                            everything automatically: who referred whom, purchase amounts, commissions earned, and
+                            payouts made.</p>
+                        <h3>Results You Can Expect</h3>
+                        <ul>
+                            <li>30-50% lower customer acquisition cost compared to paid ads.</li>
+                            <li>Referred customers have a 25% higher lifetime value.</li>
+                            <li>Organic, trust-based growth that compounds over time.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>4 min</span>
+                </div>
+            </article>
+
+            <!-- 24 -->
+            <article class="blog-card up" data-category="mlm"
+                style="--blog-glow: rgba(162,89,255,0.18); --accent-from: #FFD500; --accent-to: #a259ff;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#ffd633;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-mlm">MLM & Affiliate</span>
+                        <span>May 21, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">Important Features of a Course-Selling Platform</h2>
+                    <p class="blog-card-desc">Building a platform to sell courses online? Here are the must-have
+                        features — from video streaming and progress tracking to certificates and affiliate commissions.
+                    </p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>Essential Features</h3>
+                        <ul>
+                            <li><strong>Video Hosting & Streaming:</strong> Smooth, secure video playback with DRM
+                                protection to prevent piracy.</li>
+                            <li><strong>Progress Tracking:</strong> Students can see which lessons they've completed and
+                                pick up where they left off.</li>
+                            <li><strong>Quizzes & Assessments:</strong> Test knowledge retention after each module.</li>
+                            <li><strong>Certificates:</strong> Auto-generated completion certificates with student name
+                                and course details.</li>
+                            <li><strong>Payment Gateway:</strong> Secure payment processing with multiple options (UPI,
+                                cards, net banking).</li>
+                            <li><strong>Affiliate/Referral System:</strong> Let students earn commissions by referring
+                                new students.</li>
+                            <li><strong>Admin Dashboard:</strong> Manage courses, students, revenue, and analytics from
+                                one place.</li>
+                            <li><strong>Mobile Responsive:</strong> The platform must work flawlessly on phones — that's
+                                where most students study.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>5 min</span>
+                </div>
+            </article>
+
+            <!-- 25 -->
+            <article class="blog-card up" data-category="mlm"
+                style="--blog-glow: rgba(196,30,58,0.18); --accent-from: #C41E3A; --accent-to: #a259ff;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#ff6680;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <line x1="12" y1="1" x2="12" y2="23" />
+                            <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-mlm">MLM & Affiliate</span>
+                        <span>May 19, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">Why Manual Commission Tracking is Risky</h2>
+                    <p class="blog-card-desc">When you track commissions manually in spreadsheets, errors are
+                        inevitable. Wrong calculations, missed payouts, and disputes can destroy trust in your network.
+                    </p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>Manual Tracking Breaks at Scale</h3>
+                        <p>When you have 10 members, manual tracking might work. When you have 500 or 5,000 members
+                            across multiple levels, manual commission calculation becomes a nightmare. One wrong entry
+                            can cascade into <strong>dozens of incorrect payouts</strong>, leading to member disputes
+                            and loss of trust.</p>
+                        <h3>What Automated Commission Systems Solve</h3>
+                        <ul>
+                            <li>100% accurate multi-level commission calculations — every time.</li>
+                            <li>Real-time earnings visibility for every member.</li>
+                            <li>Automatic payout processing with complete audit trails.</li>
+                            <li>TDS/tax deduction automation for compliance.</li>
+                            <li>Dispute resolution through transparent transaction history.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>3 min</span>
+                </div>
+            </article>
+
+            <!-- 26 -->
+            <article class="blog-card up" data-category="mlm"
+                style="--blog-glow: rgba(162,89,255,0.18); --accent-from: #009B48; --accent-to: #a259ff;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#33cc77;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                            <line x1="1" y1="10" x2="23" y2="10" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-mlm">MLM & Affiliate</span>
+                        <span>May 17, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">How Wallet and Withdrawal Systems Work in Affiliate Platforms</h2>
+                    <p class="blog-card-desc">Understanding e-wallet systems, withdrawal requests, minimum payout
+                        thresholds, and secure payment processing in MLM and affiliate platforms.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>The E-Wallet System</h3>
+                        <p>Every member has an internal e-wallet where their commissions accumulate. When a sale happens
+                            through their referral, the commission is instantly credited to their wallet. Members can
+                            see their <strong>total earnings, pending commissions, and available balance</strong> at any
+                            time.</p>
+                        <h3>Withdrawal Process</h3>
+                        <ul>
+                            <li>Member submits a withdrawal request from their dashboard.</li>
+                            <li>System checks minimum payout threshold (e.g., ₹500 minimum).</li>
+                            <li>KYC verification status is confirmed.</li>
+                            <li>Admin reviews and approves the request.</li>
+                            <li>Amount is transferred to the member's bank account (NEFT/IMPS/UPI).</li>
+                            <li>TDS is automatically deducted if applicable.</li>
+                            <li>Complete transaction record is maintained for both parties.</li>
+                        </ul>
+                        <p>A well-built wallet and withdrawal system builds <strong>trust and transparency</strong> —
+                            the two most important factors in any MLM or affiliate business.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>5 min</span>
+                </div>
+            </article>
+
+            <!-- ════════════════════════════════════════════ -->
+            <!--  SOCIAL MEDIA / DIGITAL PRESENCE             -->
+            <!-- ════════════════════════════════════════════ -->
+
+            <!-- 27 ★ Best 5 -->
+            <article class="blog-card up" data-category="social"
+                style="--blog-glow: rgba(0,155,72,0.18); --accent-from: #009B48; --accent-to: #FFD500;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#33cc77;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="18" cy="5" r="3" />
+                            <circle cx="6" cy="12" r="3" />
+                            <circle cx="18" cy="19" r="3" />
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-social">Social Media</span>
+                        <span>May 26, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">Why Social Media Presence is Important for Business</h2>
+                    <p class="blog-card-desc">Your customers spend 2-3 hours daily on social media. If your business
+                        isn't there, you're invisible to them. A strong social presence builds trust, engagement, and
+                        sales.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>Where Your Customers Already Are</h3>
+                        <p>India has over <strong>460 million social media users</strong>. Your target customers are
+                            scrolling Instagram, watching YouTube, and chatting on WhatsApp right now. If they search
+                            for your business and find nothing, or find an abandoned page with no recent posts, they'll
+                            question your credibility.</p>
+                        <h3>Benefits of Active Social Media Presence</h3>
+                        <ul>
+                            <li><strong>Brand Visibility:</strong> Regular posts keep your brand in customers' minds.
+                            </li>
+                            <li><strong>Customer Trust:</strong> Active engagement shows you're a real, responsive
+                                business.</li>
+                            <li><strong>Free Marketing:</strong> Organic reach and word-of-mouth shares cost nothing.
+                            </li>
+                            <li><strong>Direct Communication:</strong> DMs and comments create a personal connection
+                                with customers.</li>
+                            <li><strong>Social Proof:</strong> Follower count, reviews, and engagement serve as trust
+                                signals.</li>
+                        </ul>
+                        <h3>But Remember...</h3>
+                        <p>Social media should drive traffic to your <strong>website</strong>, not replace it. Use
+                            social media for visibility and engagement, but convert that traffic into leads and sales
+                            through your professional website.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>5 min</span>
+                </div>
+            </article>
+
+            <!-- 28 -->
+            <article class="blog-card up" data-category="social"
+                style="--blog-glow: rgba(0,155,72,0.18); --accent-from: #a259ff; --accent-to: #33cc77;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#b98aff;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                            <path d="M16 11.37a4 4 0 11-2.63-2.63 4 4 0 012.63 2.63z" />
+                            <line x1="17.5" y1="6.5" x2="17.5" y2="6.5" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-social">Social Media</span>
+                        <span>May 24, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">What Should Businesses Post on Instagram?</h2>
+                    <p class="blog-card-desc">Stop posting random content. Here's a proven content strategy that builds
+                        followers, engagement, and actual business results from your Instagram page.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>Content Pillars for Business Instagram</h3>
+                        <ul>
+                            <li><strong>Educational Posts (40%):</strong> Tips, how-tos, industry knowledge that
+                                positions you as an expert.</li>
+                            <li><strong>Behind-the-Scenes (20%):</strong> Show your team, workspace, process — humanize
+                                your brand.</li>
+                            <li><strong>Results & Testimonials (20%):</strong> Client success stories, before/after,
+                                project showcases.</li>
+                            <li><strong>Promotional (10%):</strong> Special offers, new service launches, limited-time
+                                deals.</li>
+                            <li><strong>Engaging/Fun (10%):</strong> Memes, polls, questions, trending topics in your
+                                industry.</li>
+                        </ul>
+                        <h3>Consistency Over Perfection</h3>
+                        <p>Posting 3-4 quality posts per week consistently is better than posting 10 posts one week and
+                            disappearing for a month. Use a <strong>content calendar</strong> and batch-create content
+                            to stay consistent.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>4 min</span>
+                </div>
+            </article>
+
+            <!-- 29 -->
+            <article class="blog-card up" data-category="social"
+                style="--blog-glow: rgba(255,213,0,0.18); --accent-from: #FFD500; --accent-to: #009B48;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#ffd633;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-social">Social Media</span>
+                        <span>May 22, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">How Online Reviews Build Customer Trust</h2>
+                    <p class="blog-card-desc">93% of consumers say online reviews influence their purchasing decisions.
+                        Positive reviews are your most powerful sales tool — and they're completely free.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>Reviews = Digital Word of Mouth</h3>
+                        <p>Before the internet, people asked friends for recommendations. Now they read Google reviews,
+                            check website testimonials, and look at social media comments. A business with <strong>50+
+                                positive reviews</strong> on Google will always win against a competitor with zero
+                            reviews, even if the competitor is actually better.</p>
+                        <h3>How to Get More Reviews</h3>
+                        <ul>
+                            <li>Ask happy customers directly — most people are willing to help if you just ask.</li>
+                            <li>Send a follow-up WhatsApp message with a direct link to your Google review page.</li>
+                            <li>Make it easy — the fewer clicks required, the more reviews you'll get.</li>
+                            <li>Respond to every review (positive and negative) — it shows you care.</li>
+                            <li>Display your best reviews prominently on your website.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>4 min</span>
+                </div>
+            </article>
+
+            <!-- 30 -->
+            <article class="blog-card up" data-category="social"
+                style="--blog-glow: rgba(0,81,162,0.18); --accent-from: #4da6ff; --accent-to: #009B48;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#4da6ff;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                            <circle cx="12" cy="10" r="3" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-social">Social Media</span>
+                        <span>May 20, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">What is Google Business Profile and Why Does It Matter?</h2>
+                    <p class="blog-card-desc">Google Business Profile (formerly Google My Business) puts your business
+                        on Google Maps and local search results — completely free. It's one of the most underrated
+                        marketing tools.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>Free Local Marketing from Google</h3>
+                        <p>When someone searches "web developer near me" or "best restaurant in Lucknow" on Google, the
+                            businesses that show up with photos, ratings, and contact info are all using <strong>Google
+                                Business Profile</strong>. Setting up and optimizing this profile is 100% free and can
+                            drive significant local traffic to your business.</p>
+                        <h3>What to Include</h3>
+                        <ul>
+                            <li>Accurate business name, address, and phone number</li>
+                            <li>Business hours and website link</li>
+                            <li>High-quality photos of your work/products/office</li>
+                            <li>Customer reviews and your responses</li>
+                            <li>Regular posts about offers, updates, and events</li>
+                            <li>Service area and service categories</li>
+                        </ul>
+                        <p>A well-optimized Google Business Profile can be more effective than paid ads for local
+                            businesses.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>4 min</span>
+                </div>
+            </article>
+
+            <!-- 31 -->
+            <article class="blog-card up" data-category="social"
+                style="--blog-glow: rgba(255,88,0,0.18); --accent-from: #FF5800; --accent-to: #FFD500;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#ff884d;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M12 19l7-7 3 3-7 7-3-3z" />
+                            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+                            <path d="M2 2l7.586 7.586" />
+                            <circle cx="11" cy="11" r="2" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-social">Social Media</span>
+                        <span>May 18, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">What is Branding in Simple Words?</h2>
+                    <p class="blog-card-desc">Branding is not just a logo. It's the complete feeling people get when
+                        they interact with your business — from your website's colors to how you answer the phone.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>Branding = Perception</h3>
+                        <p>Your brand is what people say about your business when you're not in the room. It's the sum
+                            of every interaction: your website design, social media posts, customer service, packaging,
+                            and even your email signature. <strong>Consistent branding builds recognition and
+                                trust.</strong></p>
+                        <h3>Key Elements of Good Branding</h3>
+                        <ul>
+                            <li><strong>Logo & Visual Identity:</strong> A professional, memorable logo with consistent
+                                colors and fonts.</li>
+                            <li><strong>Tone of Voice:</strong> How you communicate — formal, friendly, technical,
+                                casual?</li>
+                            <li><strong>Website:</strong> Your website is the most important branding asset. It must
+                                reflect your values and quality.</li>
+                            <li><strong>Social Media:</strong> Consistent visual style, same color palette, recognizable
+                                content format.</li>
+                            <li><strong>Customer Experience:</strong> Every touchpoint should feel cohesive and
+                                intentional.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>3 min</span>
+                </div>
+            </article>
+
+            <!-- 32 -->
+            <article class="blog-card up" data-category="social"
+                style="--blog-glow: rgba(0,155,72,0.18); --accent-from: #00bcd4; --accent-to: #a259ff;">
+                <div class="blog-card-accent"></div>
+                <div class="blog-card-body">
+                    <div class="blog-card-icon" style="color:#26d9ec;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" />
+                            <line x1="8" y1="21" x2="16" y2="21" />
+                            <line x1="12" y1="17" x2="12" y2="21" />
+                        </svg>
+                    </div>
+                    <div class="blog-meta">
+                        <span class="blog-category cat-social">Social Media</span>
+                        <span>May 16, 2026</span>
+                    </div>
+                    <h2 class="blog-card-title">Why Your Logo, Website, and Social Media Should Look Consistent</h2>
+                    <p class="blog-card-desc">Inconsistent branding confuses customers and looks unprofessional. Visual
+                        consistency across all platforms builds instant recognition and trust.</p>
+                </div>
+                <div class="blog-card-full">
+                    <div class="blog-card-full-inner">
+                        <h3>The Consistency Rule</h3>
+                        <p>If your Instagram uses bright neon colors, your website has a dark minimalist theme, and your
+                            business card looks completely different — customers won't recognize you across platforms.
+                            <strong>Visual inconsistency equals lost trust and lost revenue.</strong></p>
+                        <h3>How to Maintain Consistency</h3>
+                        <ul>
+                            <li>Define a color palette (2-3 primary colors) and use them everywhere.</li>
+                            <li>Choose 1-2 fonts and stick to them across all platforms.</li>
+                            <li>Use the same logo (and its variations) consistently.</li>
+                            <li>Create templates for social media posts that use your brand colors and fonts.</li>
+                            <li>Ensure your website design aligns with your social media visual style.</li>
+                        </ul>
+                        <p>Brands that maintain consistent visual identity across platforms see <strong>3.5x better
+                                brand recognition</strong> compared to inconsistent ones.</p>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <button class="read-btn" onclick="toggleRead(this)">Read More <span
+                            class="arrow">&rarr;</span></button>
+                    <span class="blog-read-time"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>3 min</span>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/Brahmpreett" class="social-icon" target="_blank" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path
+                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                    </path>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/brahmpreet-singh-5b2a5029a/" class="social-icon" target="_blank"
+                aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+            </a>
+            <a href="https://www.instagram.com/brahmpreett" class="social-icon" target="_blank" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37a4 4 0 1 1-2.63-2.63 4 4 0 0 1 2.63 2.63z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+                </svg>
+            </a>
+            <a href="https://x.com/brahmpreett_645" class="social-icon" target="_blank" aria-label="X">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M18 6L6 18"></path>
+                    <path d="M6 6l12 12"></path>
+                </svg>
+            </a>
+            <a href="mailto:brahmpreetsarna@gmail.com" class="social-icon" aria-label="Email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+            </a>
+        </div>
+        <p><a href="support.html" class="footer-link"><strong>Support</strong></a> the developer.</p>
+        <p style="margin-top:8px;font-size:.8rem">
+            &copy; 2026 All Rights Reserved |
+            <strong><a href="index.html#hero" class="footer-link">Shreshth Chaurasiya</a></strong>
+        </p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // ══════════════════════════════════════════════════
+        //  CURSOR
+        // ══════════════════════════════════════════════════
+        const cur = document.getElementById('cur');
+        const curDot = document.getElementById('cur-dot');
+        let mx = 0, my = 0, cx = 0, cy = 0;
+        document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+        (function moveCursor() {
+            cx += (mx - cx) * .14; cy += (my - cy) * .14;
+            cur.style.left = cx + 'px'; cur.style.top = cy + 'px';
+            curDot.style.left = mx + 'px'; curDot.style.top = my + 'px';
+            requestAnimationFrame(moveCursor);
+        })();
+
+        // ══════════════════════════════════════════════════
+        //  MOBILE NAV TOGGLE
+        // ══════════════════════════════════════════════════
+        const navToggle = document.getElementById('navToggle');
+        const navLinksEl = document.getElementById('navLinks');
+        if (navToggle && navLinksEl) {
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('active');
+                navLinksEl.classList.toggle('active');
+            });
+            navLinksEl.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navToggle.classList.remove('active');
+                    navLinksEl.classList.remove('active');
+                });
+            });
+        }
+
+        // ══════════════════════════════════════════════════
+        //  SCROLL PROGRESS
+        // ══════════════════════════════════════════════════
+        const prog = document.getElementById('progress');
+        window.addEventListener('scroll', () => {
+            prog.style.width = (window.scrollY / (document.documentElement.scrollHeight - innerHeight) * 100) + '%';
+        }, { passive: true });
+
+        // ══════════════════════════════════════════════════
+        //  PARTICLES
+        // ══════════════════════════════════════════════════
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        const PCOLS = ['#FF5800', '#0051A2', '#FFD500', '#009B48', '#C41E3A'];
+        function resizeCanvas() { canvas.width = innerWidth; canvas.height = innerHeight; }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() { this.init(true); }
+            init(rand) {
+                this.x = Math.random() * canvas.width;
+                this.y = rand ? Math.random() * canvas.height : canvas.height + 10;
+                this.sz = Math.random() * 7 + 2;
+                this.col = PCOLS[Math.floor(Math.random() * PCOLS.length)];
+                this.vx = (Math.random() - .5) * .5;
+                this.vy = -(Math.random() * .45 + .1);
+                this.rot = Math.random() * Math.PI * 2;
+                this.spin = (Math.random() - .5) * .045;
+                this.a = Math.random() * .12 + .02;
+            }
+            tick() {
+                this.x += this.vx; this.y += this.vy; this.rot += this.spin;
+                if (this.y < -12 || this.x < -12 || this.x > canvas.width + 12) this.init(false);
+            }
+            draw() {
+                ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rot);
+                ctx.globalAlpha = this.a; ctx.fillStyle = this.col;
+                ctx.fillRect(-this.sz / 2, -this.sz / 2, this.sz, this.sz);
+                ctx.restore();
+            }
+        }
+        const parts = Array.from({ length: 50 }, () => new Particle());
+        (function tickP() { ctx.clearRect(0, 0, canvas.width, canvas.height); parts.forEach(p => { p.tick(); p.draw(); }); requestAnimationFrame(tickP); })();
+
+        // ══════════════════════════════════════════════════
+        //  FILTER SYSTEM
+        // ══════════════════════════════════════════════════
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const blogCards = document.querySelectorAll('.blog-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const category = btn.getAttribute('data-category');
+
+                blogCards.forEach((card, i) => {
+                    const cardCat = card.getAttribute('data-category');
+                    if (category === 'all' || cardCat === category) {
+                        card.classList.remove('hidden-card');
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50 + (i * 30));
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.classList.add('hidden-card');
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // ══════════════════════════════════════════════════
+        //  READ MORE TOGGLE
+        // ══════════════════════════════════════════════════
+        function toggleRead(btn) {
+            const card = btn.closest('.blog-card');
+            const fullContent = card.querySelector('.blog-card-full');
+            const isOpen = fullContent.classList.contains('expanded');
+
+            if (isOpen) {
+                fullContent.classList.remove('expanded');
+                btn.innerHTML = 'Read More <span class="arrow">&rarr;</span>';
+                btn.classList.remove('open');
+                // Scroll card into view smoothly
+                setTimeout(() => {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 350);
+            } else {
+                fullContent.classList.add('expanded');
+                btn.innerHTML = 'Read Less <span class="arrow">&rarr;</span>';
+                btn.classList.add('open');
+            }
+        }
+
+        // ══════════════════════════════════════════════════
+        //  SCROLL ANIMATION OBSERVER
+        // ══════════════════════════════════════════════════
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('vis');
+                }
+            });
+        }, { threshold: 0.08 });
+
+        document.querySelectorAll('.up').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
