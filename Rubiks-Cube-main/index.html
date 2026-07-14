@@ -42,7 +42,7 @@
       "image": "https://shreshthchaurasiya.site/preview.png",
       "description": "Freelance web developer in India specializing in custom websites, AI automation, ERP/CRM software, and MLM platforms.",
       "knowsAbout": ["Web Development", "AI Automation", "ERP Software", "CRM Systems", "MLM Software", "UI/UX Design", "WhatsApp Automation", "React", "Node.js", "Full Stack Development"],
-      "sameAs": []
+      "sameAs": ["https://www.linkedin.com/in/shreshth-chaurasiya-103b4a412"]
     }
     </script>
 
@@ -3530,7 +3530,7 @@
 
         <div class="sec-head up">
             <div class="sec-tag">01 &mdash; About</div>
-            <h2 class="sec-title">Shreshth Chaurasiya — <span>Freelance Web Developer</span> & AI Automation Expert</h2>
+            <h2 class="sec-title" id="about-typed-title" style="min-height: 2.2em;"></h2>
         </div>
 
         <div class="about-container">
@@ -4308,7 +4308,7 @@
                 </svg>
             </a>
 
-            <a href="" class="social-icon" target="_blank" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/shreshth-chaurasiya-103b4a412" class="social-icon" target="_blank" aria-label="LinkedIn">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
@@ -4764,6 +4764,66 @@
             else if (isDeleting && ci === 0) { isDeleting = false; wi = (wi + 1) % words.length; spd = 290; }
             setTimeout(type, spd);
         })();
+
+        // ══════════════════════════════════════════════════
+        //  ABOUT SECTION TYPEWRITER (Responsive & HTML aware)
+        // ══════════════════════════════════════════════════
+        const aboutTitle = document.getElementById('about-typed-title');
+        if (aboutTitle) {
+            const parts = [
+                { type: 'text', content: 'Shreshth Chaurasiya — ' },
+                { type: 'span', content: 'Freelance Web Developer' },
+                { type: 'text', content: ' & AI Automation Expert' }
+            ];
+            
+            let partIndex = 0;
+            let charIndex = 0;
+            let currentNode = null;
+            
+            const cursorStyle = document.createElement('style');
+            cursorStyle.innerHTML = `.about-cursor { display: inline-block; width: 4px; height: 0.8em; background-color: var(--red); margin-left: 6px; vertical-align: middle; animation: blink 1s step-end infinite; } @keyframes blink { 50% { opacity: 0; } }`;
+            document.head.appendChild(cursorStyle);
+            
+            const cursor = document.createElement('span');
+            cursor.className = 'about-cursor';
+
+            const aboutObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    aboutObserver.disconnect();
+                    aboutTitle.appendChild(cursor);
+                    typeNextChar();
+                }
+            }, { threshold: 0.3 });
+            
+            aboutObserver.observe(aboutTitle);
+
+            function typeNextChar() {
+                if (partIndex >= parts.length) return;
+                
+                const part = parts[partIndex];
+                
+                if (charIndex === 0) {
+                    if (part.type === 'span') {
+                        currentNode = document.createElement('span');
+                        aboutTitle.insertBefore(currentNode, cursor);
+                    } else {
+                        currentNode = document.createTextNode('');
+                        aboutTitle.insertBefore(currentNode, cursor);
+                    }
+                }
+                
+                if (part.type === 'span') currentNode.textContent += part.content[charIndex];
+                else currentNode.nodeValue += part.content[charIndex];
+                
+                charIndex++;
+                
+                if (charIndex >= part.content.length) {
+                    partIndex++;
+                    charIndex = 0;
+                }
+                setTimeout(typeNextChar, 50);
+            }
+        }
 
         // ══════════════════════════════════════════════════
         //  SCROLL ANIMATIONS
