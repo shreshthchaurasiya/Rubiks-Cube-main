@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shreshth Chaurasiya — Full Stack Developer</title>
+<meta name="description" content="Shreshth Chaurasiya — Full Stack Developer &amp; Tech Product Builder. Available for freelance projects, custom web applications, and scalable software.">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/fall/000.webp">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="is-locked">
+
+<!-- ============ LOADER ============ -->
+<div class="loader" id="loader" role="dialog" aria-label="Loading">
+  <div class="loader-shaft"><i id="loadFill"></i></div>
+  <p class="loader-status"><span id="loadPct">0</span>% of the fall loaded</p>
+  <div class="loader-actions">
+    <button class="btn btn--solid" data-enter="sound" data-cursor="Jump">Enter with sound</button>
+    <button class="btn" data-enter="mute" data-cursor="Jump">Enter without sound</button>
+  </div>
+</div>
+
+<!-- ============ CHROME ============ -->
+<header class="nav">
+  <button class="nav-menu" id="menuBtn" aria-expanded="false" aria-controls="menu" data-cursor="Open">Menu</button>
+  <a class="nav-mark" href="#top" data-jump="top">Shreshth Chaurasiya® <em>full stack developer</em></a>
+  <div class="nav-right">
+    <button class="nav-sound" id="soundBtn" aria-pressed="false" data-cursor="Listen">
+      <i class="bars" aria-hidden="true"><b></b><b></b><b></b><b></b></i><span>Sound off</span>
+    </button>
+    <a class="nav-wa" href="https://wa.me/918853921178?text=Hi%20Shreshth,%20let's%20connect!" target="_blank" rel="noopener" data-cursor="Chat">WhatsApp</a>
+    <a class="nav-talk" href="#contact" data-jump="contact">Let's talk</a>
+  </div>
+</header>
+
+<nav class="menu" id="menu" aria-hidden="true">
+  <ol class="menu-list">
+    <li><a href="#top" data-jump="story:0" data-img="assets/fall/060.webp"><span>The leap</span></a></li>
+    <li><a href="#top" data-jump="story:.53" data-img="assets/fall/250.webp"><span>The noise</span></a></li>
+    <li><a href="#top" data-jump="story:.77" data-img="assets/fall/440.webp"><span>Rise</span></a></li>
+    <li><a href="#work" data-jump="work" data-img="assets/projects/vaapis.webp"><span>Featured projects</span></a></li>
+    <li><a href="#about" data-jump="about" data-img="assets/fall/205.webp"><span>About</span></a></li>
+    <li><a href="#services" data-jump="services" data-img="assets/projects/code-screen.webp"><span>Capabilities</span></a></li>
+    <li><a href="#portal" data-jump="portal" data-img="assets/portal/072.webp"><span>The portal</span></a></li>
+    <li><a href="#contact" data-jump="contact" data-img="assets/portal/228.webp"><span>Contact</span></a></li>
+  </ol>
+  <div class="menu-preview" aria-hidden="true"><img alt="" src="assets/fall/060.webp"></div>
+  <p class="menu-foot">Press Esc to close</p>
+</nav>
+
+<div class="hud" aria-hidden="true">
+  <div class="hud-chapter"><span class="hud-num">01</span><span class="hud-name">The leap</span></div>
+  <div class="hud-bar"><i></i></div>
+  <div class="hud-read">Altitude 12 400 m</div>
+</div>
+
+<div class="cursor" aria-hidden="true"><i class="cursor-dot"></i><i class="cursor-ring"><span></span></i></div>
+<div class="grain" aria-hidden="true"></div>
+
+<main id="top">
+
+  <!-- ============ STORY: fall → impact → noise → rise → index ============ -->
+  <section class="story" id="story" aria-label="Intro story">
+    <div class="stage">
+      <div class="stage-inner">
+        <canvas class="ambient" id="ambient" aria-hidden="true"></canvas>
+
+        <div class="world world--back" aria-hidden="true"><div class="cam"></div></div>
+
+        <div class="index-name" aria-hidden="true">Shreshth Chaurasiya</div>
+
+        <div class="film" id="film"><canvas id="filmCanvas" aria-label="A figure falls through a shaft of golden light, lands in a crowd and stands up glowing"></canvas></div>
+        <div class="vignette" aria-hidden="true"></div>
+
+        <div class="index-tiles" id="tiles">
+          <button class="tile" data-go="0" data-cursor="View" data-x="-.30" data-y="-.25" data-s=".24" data-ar="1" data-z="-120" data-d="0"><img src="assets/projects/vaapis-logo.webp" alt="Vaapis.in Logo"><span class="tile-cap">Vaapis.in</span></button>
+          <button class="tile" data-go="services" data-cursor="View" data-x=".30" data-y="-.26" data-s=".18" data-ar="1.33" data-z="-60" data-d=".08"><img src="assets/projects/code-screen.webp" alt="Coding Screen"><span class="tile-cap">Code &amp; Logic</span></button>
+          <button class="tile" data-go="3" data-cursor="View" data-x="-.33" data-y=".18" data-s=".14" data-ar="1" data-z="40" data-d=".18"><img src="assets/projects/reviewai-logo.webp" alt="Review AI Logo" style="object-position:50% 50%"><span class="tile-cap">Review AI</span></button>
+          <button class="tile" data-go="1" data-cursor="View" data-x=".31" data-y=".19" data-s=".19" data-ar="1" data-z="-20" data-d=".12"><img src="assets/projects/growthrise-logo.webp" alt="The Growth Rise Logo"><span class="tile-cap">The Growth Rise</span></button>
+          <button class="tile tile--gen gen-sun" data-go="about" data-cursor="View" data-x="-.07" data-y="-.43" data-s=".11" data-ar="1.3" data-z="-260" data-d=".26"><span class="tile-cap">3+ Years Exp</span></button>
+          <button class="tile" data-go="2" data-cursor="View" data-x=".06" data-y=".43" data-s=".13" data-ar="1" data-z="-200" data-d=".3"><img src="assets/projects/gymerp-logo.webp" alt="GymSync Biometric ERP" style="object-position:50% 50%"><span class="tile-cap">GymSync ERP</span></button>
+          <button class="tile" data-go="portal" data-cursor="View" data-x="-.46" data-y="-.02" data-s=".15" data-ar="1" data-z="-320" data-d=".22"><img src="assets/projects/shreshth-portrait.webp" alt="Shreshth Chaurasiya"><span class="tile-cap">Shreshth</span></button>
+          <button class="tile" data-go="3" data-cursor="View" data-x=".47" data-y="-.03" data-s=".13" data-ar="1" data-z="-280" data-d=".34"><img src="assets/projects/reviewai-logo.webp" alt="QR Review AI"><span class="tile-cap">QR Review AI</span></button>
+          <button class="tile tile--gen gen-type" data-go="services" data-cursor="View" data-x="-.20" data-y=".41" data-s=".10" data-ar=".8" data-z="-160" data-d=".38"><b>&lt;/&gt;</b><span class="tile-cap">Product Builder</span></button>
+          <button class="tile is-iris" data-go="1" data-cursor="View" data-x=".19" data-y="-.42" data-s=".10" data-ar="1" data-z="-220" data-d=".42"><img src="assets/projects/growthrise-logo.webp" alt="Growth Rise"><span class="tile-cap">Growth Rise</span></button>
+        </div>
+
+        <div class="world world--front" aria-hidden="true"><div class="cam"></div></div>
+        <div class="world world--ui"><div class="cam"></div></div>
+
+        <div class="rise" aria-hidden="true"><span>R</span><span>I</span><span>S</span><span>E</span></div>
+        <div class="shock" aria-hidden="true"></div>
+
+        <div class="hero" id="hero">
+          <p class="hero-intro">Full Stack Developer.<br>Building custom software and web experiences that scale.</p>
+          <h1 class="hero-name" aria-label="Shreshth Chaurasiya"><span class="hn-word"><span class="hn">S</span><span class="hn">H</span><span class="hn">R</span><span class="hn">E</span><span class="hn">S</span><span class="hn">H</span><span class="hn">T</span><span class="hn">H</span></span><span class="hn sp"> </span><span class="hn-word"><span class="hn">C</span><span class="hn">H</span><span class="hn">A</span><span class="hn">U</span><span class="hn">R</span><span class="hn">A</span><span class="hn">S</span><span class="hn">I</span><span class="hn">Y</span><span class="hn">A</span></span></h1>
+          <div class="hero-foot">
+            <button class="hero-cue" data-jump="story:.2" data-cursor="Fall"><span>Scroll to let go</span><i></i></button>
+            <button class="hero-skip" data-jump="work">Skip to projects</button>
+          </div>
+        </div>
+
+        <div class="flash" aria-hidden="true"><b>Impact</b></div>
+        <div class="flash flash--ember" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SELECTED WORK ============ -->
+  <section class="work" id="work" aria-label="Selected work">
+    <div class="work-stage">
+      <article class="screen" style="--c:var(--molten)">
+        <header class="screen-bar"><span>Featured project</span><span>Vaapis.in</span><span>Project 1 of 4</span></header>
+        <div class="screen-title" aria-hidden="true"><span>Vaapis&nbsp; Vaapis&nbsp; Vaapis&nbsp; Vaapis&nbsp;</span></div>
+        <div class="disc">
+          <svg class="disc-ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ring0" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs><text><textPath href="#ring0" textLength="548" lengthAdjust="spacing">Vaapis.in — customer retention & digital loyalty platform — 1,200+ retail stores —</textPath></text></svg>
+          <div class="disc-face"><img src="assets/projects/vaapis-logo.webp" alt="Vaapis official logo"></div>
+        </div>
+        <div class="screen-meta">
+          <h3>Vaapis.in</h3>
+          <p>AI-powered customer retention and digital loyalty SaaS platform for retail brands. Features QR-based rewards, automated WhatsApp re-engagement flows, and real-time merchant analytics.</p>
+          <dl><dt>Stack</dt><dd>React, Node.js, MongoDB, WhatsApp Cloud API</dd><dt>Year</dt><dd>2026</dd></dl>
+        </div>
+        <a class="screen-cta magnet" href="#contact" data-jump="contact" data-cursor="Talk">Explore platform &amp; architecture</a>
+        <span class="screen-mark" aria-hidden="true">©® 2026</span>
+      </article>
+
+      <article class="screen" style="--c:var(--ember)">
+        <header class="screen-bar"><span>Featured project</span><span>The Growth Rise</span><span>Project 2 of 4</span></header>
+        <div class="screen-title" aria-hidden="true"><span>Growth Rise&nbsp; Growth Rise&nbsp; Growth Rise&nbsp;</span></div>
+        <div class="disc">
+          <svg class="disc-ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ring1" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs><text><textPath href="#ring1" textLength="548" lengthAdjust="spacing">The Growth Rise — EdTech course marketplace & high-scale affiliate network —</textPath></text></svg>
+          <div class="disc-face"><img src="assets/projects/growthrise-logo.webp" alt="The Growth Rise official logo"></div>
+        </div>
+        <div class="screen-meta">
+          <h3>The Growth Rise</h3>
+          <p>An all-in-one EdTech learning and affiliate marketing portal. Engineered with real-time performance analytics, automated wallet payouts, secure student onboarding, and instant digital delivery.</p>
+          <dl><dt>Stack</dt><dd>Next.js, Node.js, PostgreSQL, Supabase</dd><dt>Year</dt><dd>2026</dd></dl>
+        </div>
+        <a class="screen-cta magnet" href="#contact" data-jump="contact" data-cursor="Talk">Discuss build &amp; scale</a>
+        <span class="screen-mark" aria-hidden="true">©® 2026</span>
+      </article>
+
+      <article class="screen" style="--c:var(--iris)">
+        <header class="screen-bar"><span>Featured project</span><span>GymSync ERP</span><span>Project 3 of 4</span></header>
+        <div class="screen-title" aria-hidden="true"><span>GymSync&nbsp; GymSync&nbsp; GymSync&nbsp;</span></div>
+        <div class="disc">
+          <svg class="disc-ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ring2" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs><text><textPath href="#ring2" textLength="548" lengthAdjust="spacing">GymSync ERP — biometric attendance & universal cloud gym management —</textPath></text></svg>
+          <div class="disc-face"><img src="assets/projects/gymerp-logo.webp" alt="GymSync Biometric Attendance & ERP Integration"></div>
+        </div>
+        <div class="screen-meta">
+          <h3>GymSync ERP</h3>
+          <p>A smart biometric attendance and universal gym ERP integration APK. Connects hardware facial recognition scanners directly to cloud management platforms for automated member check-ins, subscription tracking, and live telemetry.</p>
+          <dl><dt>Stack</dt><dd>React Native, Android APK, Node.js, Express, MongoDB</dd><dt>Year</dt><dd>2026</dd></dl>
+        </div>
+        <a class="screen-cta magnet" href="#contact" data-jump="contact" data-cursor="Talk">Explore ERP &amp; APK architecture</a>
+        <span class="screen-mark" aria-hidden="true">©® 2026</span>
+      </article>
+
+      <article class="screen" style="--c:var(--iris)">
+        <header class="screen-bar"><span>Featured project</span><span>Review AI</span><span>Project 4 of 4</span></header>
+        <div class="screen-title" aria-hidden="true"><span>Review AI&nbsp; Review AI&nbsp; Review AI&nbsp;</span></div>
+        <div class="disc">
+          <svg class="disc-ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ring3" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"/></defs><text><textPath href="#ring3" textLength="548" lengthAdjust="spacing">Review AI — QR customer feedback & Google review growth platform —</textPath></text></svg>
+          <div class="disc-face"><img src="assets/projects/reviewai-logo.webp" alt="Review AI smart QR reviews logo"></div>
+        </div>
+        <div class="screen-meta">
+          <h3>Review AI</h3>
+          <p>AI-powered QR customer feedback and Google review acceleration platform. Turns in-store customer visits into verified 5-star Google reviews with smart QR flows and automated merchant alerts.</p>
+          <dl><dt>Stack</dt><dd>React, Next.js, Node.js, TailwindCSS</dd><dt>Year</dt><dd>2026</dd></dl>
+        </div>
+        <a class="screen-cta magnet" href="#contact" data-jump="contact" data-cursor="Talk">Explore QR review platform</a>
+        <span class="screen-mark" aria-hidden="true">©® 2026</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about" id="about" aria-label="About">
+    <p class="manifesto" id="manifesto">While most talk about ideas, I build them. Turning ambitious visions into fast, scalable digital products that solve real problems and create genuine value.</p>
+    <div class="about-cols">
+      <p><strong>Tech Product Builder at Adshree Elevra Private Limited.</strong> Leading product execution, turning complex ideas into high-impact digital solutions, and building scalable software architectures with clean execution.</p>
+      <p><strong>Build. Learn. Improve. Repeat.</strong> Specialized in modern full-stack development (React, Next.js, Node.js), scalable databases (MongoDB, PostgreSQL, Supabase), and intuitive UI/UX design. Available for client projects and product builds worldwide.</p>
+    </div>
+  </section>
+
+  <div class="marquee" aria-label="Tech stack and tools">
+    <div class="marquee-row" data-dir="-1"><div class="marquee-track"><span>React.js</span><span class="o">Next.js</span><span>Node.js</span><span class="o">TypeScript</span><span>MongoDB</span><span class="o">PostgreSQL</span><span>Supabase</span></div></div>
+    <div class="marquee-row" data-dir="1"><div class="marquee-track"><span class="o">JavaScript</span><span>HTML5 &amp; CSS3</span><span class="o">TailwindCSS</span><span>WhatsApp Cloud API</span><span class="o">REST APIs</span><span>UI/UX Design</span></div></div>
+  </div>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="services" id="services" aria-label="Services">
+    <h2 class="services-head">Capabilities &amp; What I Deliver</h2>
+    <ul class="svc-list">
+      <li class="svc" data-img="assets/fall/090.webp" data-cursor="Code"><a href="#contact" data-jump="contact"><span class="svc-name">Full-Stack Web Apps</span><span class="svc-desc">Bespoke React and Next.js applications engineered with HTML5/CSS3 for lightning-fast speeds, SEO ranking, and maximum conversion.</span></a></li>
+      <li class="svc" data-img="assets/fall/288.webp" data-cursor="Code"><a href="#contact" data-jump="contact"><span class="svc-name">Product Building &amp; UI/UX</span><span class="svc-desc">Turning concepts from wireframes into production-ready digital products. Clean interface design, intuitive user journeys, and rapid end-to-end execution.</span></a></li>
+      <li class="svc" data-img="assets/portal/120.webp" data-cursor="Code"><a href="#contact" data-jump="contact"><span class="svc-name">Custom Web Platforms &amp; Dashboards</span><span class="svc-desc">High-scale business software, automated billing engines, inventory dashboards, and custom client management portals.</span></a></li>
+      <li class="svc" data-img="assets/fall/440.webp" data-cursor="Code"><a href="#contact" data-jump="contact"><span class="svc-name">Interactive Frontend &amp; UI/UX</span><span class="svc-desc">Clean responsive layouts, tactile micro-interactions, and modern component architectures that turn complex workflows into intuitive digital experiences.</span></a></li>
+    </ul>
+    <div class="svc-preview" aria-hidden="true"><img alt="" src="assets/fall/090.webp"></div>
+  </section>
+
+  <!-- ============ PORTAL ============ -->
+  <section class="portal" id="portal" aria-label="Contact intro">
+    <div class="portal-stage">
+      <canvas id="portalCanvas" aria-label="Shreshth standing with arms crossed emerging from cinematic shadows"></canvas>
+      <div class="tunnel" aria-hidden="true"><div class="tunnel-cam"></div></div>
+      <div class="portal-shade" aria-hidden="true"></div>
+      <p class="portal-line" data-w=".02,.2">Every ambitious idea deserves clean execution.</p>
+      <p class="portal-line" data-w=".22,.44">From concept to scalable, production-ready software.</p>
+      <p class="portal-line" data-w=".48,.72">This is where we build the future.</p>
+      <div class="portal-cta">
+        <h2>Let's build software that actually moves the needle.</h2>
+        <div class="portal-actions">
+          <a class="btn btn--solid magnet" href="https://wa.me/918853921178?text=Hi%20Shreshth,%20let's%20build%20something%20together!" target="_blank" rel="noopener" data-cursor="Chat">Chat on WhatsApp</a>
+          <a class="btn magnet" href="mailto:chaurasiyashresth17@gmail.com?subject=Project%20Inquiry" data-cursor="Write">Send email</a>
+          <button class="btn magnet" id="copyEmail" data-email="chaurasiyashresth17@gmail.com" data-cursor="Copy">Copy email</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <footer class="contact" id="contact">
+    <p class="contact-kicker">Tech Product Builder at Adshree Elevra Private Limited. Available for freelance projects, custom software &amp; product builds.</p>
+    <div class="contact-cta-row">
+      <a class="contact-wa magnet" href="https://wa.me/918853921178?text=Hi%20Shreshth,%20let's%20connect!" target="_blank" rel="noopener" data-cursor="Chat">
+        <span>Chat on WhatsApp (+91 8853921178) &rarr;</span>
+      </a>
+    </div>
+    <a class="contact-mail magnet" href="mailto:chaurasiyashresth17@gmail.com" data-cursor="Write">chaurasiyashresth17@gmail.com</a>
+    <div class="contact-grid">
+      <ul class="contact-social">
+        <li><a href="https://wa.me/918853921178" target="_blank" rel="noopener" data-cursor="Chat">WhatsApp</a></li>
+        <li><a href="https://www.linkedin.com/in/shreshthchaurasiya-103b4a412" target="_blank" rel="noopener" data-cursor="Open">LinkedIn</a></li>
+        <li><a href="https://github.com/shreshthchaurasiya" target="_blank" rel="noopener" data-cursor="Open">GitHub</a></li>
+        <li><a href="mailto:chaurasiyashresth17@gmail.com" data-cursor="Open">Email</a></li>
+      </ul>
+      <p class="contact-time">India, <span id="clock">--:--</span><br>Replies within 24 hours</p>
+      <button class="contact-again magnet" data-jump="top" data-cursor="Again">Fall again <span aria-hidden="true">&uarr;</span></button>
+    </div>
+    <p class="contact-legal">&copy; 2026 Shreshth Chaurasiya. Turning ideas into digital products.</p>
+  </footer>
+</main>
+
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

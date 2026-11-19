@@ -1,0 +1,11 @@
+{
+  "name": "shreshth-chaurasiya-portfolio",
+  "version": "2.0.0",
+  "description": "Shreshth Chaurasiya — Full Stack Developer & Tech Product Builder",
+  "scripts": {
+    "build": "echo 'Build successful - static portfolio ready'",
+    "start": "python3 -m http.server 3000"
+  },
+  "author": "Shreshth Chaurasiya",
+  "license": "MIT"
+}
